@@ -3,9 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>bubbleapp.cn</title>
-<meta name="robots" content="noindex,nofollow">
-<meta http-equiv="refresh" content="1; url=https://www.bubbleapp.cn/">
+<title>跳转中 · bubbleapp.cn</title>
+<link rel="canonical" href="https://www.bubbleapp.cn/">
+<meta name="robots" content="noindex,follow">
+<meta http-equiv="refresh" content="0; url=https://www.bubbleapp.cn/">
 <style>
 :root{color-scheme:light}
 html,body{margin:0;height:100%}
@@ -13,7 +14,7 @@ body{display:flex;align-items:center;justify-content:center;
      font:15px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;
      background:#fff;color:#20242b}
 .box{text-align:center;padding:32px}
-.t{font-size:20px;font-weight:600;letter-spacing:.02em}
+.t{font-size:19px;font-weight:600;letter-spacing:.02em}
 .s{margin-top:10px;color:#5b6472;font-size:13.5px}
 a{color:#1a5fd0;text-decoration:none}
 a:hover{text-decoration:underline}
@@ -25,15 +26,12 @@ a:hover{text-decoration:underline}
   <div class="s">若未自动跳转，请点 <a id="lk" href="https://www.bubbleapp.cn/">这里</a></div>
 </div>
 <script>
-(function () {
-  var tail = location.pathname + location.search + location.hash;
-  if (tail === "/" ) tail = "";
-  var target = "https://www.bubbleapp.cn" + tail;
-  var lk = document.getElementById("lk");
-  if (lk) lk.setAttribute("href", target);
-  var m = document.querySelector('meta[http-equiv="refresh"]');
-  if (m) m.setAttribute("content", "1; url=" + target);
-  location.replace(target);
+(function(){
+  var base="https://www.bubbleapp.cn/";
+  var full=base+location.search+location.hash;
+  var lk=document.getElementById("lk");
+  if(lk) lk.setAttribute("href",full);
+  location.replace(full);
 })();
 </script>
 </body>
