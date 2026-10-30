@@ -1,0 +1,111 @@
+{
+  "release": "v6-2026-10-30",
+  "url": "https://bubbleapp.cn/jinse/",
+  "files": [
+    {
+      "path": "LICENSES.md",
+      "bytes": 862,
+      "sha256": "a1f7206d467011aad244d2d9ab5e4237c331df21fcb823de79b30974c76d0b5d"
+    },
+    {
+      "path": "assets/dream-v6.png",
+      "bytes": 1934535,
+      "sha256": "4e0ca6be5236615f791e100d002065e9f93028d94c3afcaefbe36aa8a0a896df"
+    },
+    {
+      "path": "assets/fonts/MaShanZheng-OFL.txt",
+      "bytes": 4397,
+      "sha256": "d7bdb1cee215b689e23c2f95672a6084c790542170648267a55114103d756a08"
+    },
+    {
+      "path": "assets/fonts/MaShanZheng-Regular.ttf",
+      "bytes": 5857936,
+      "sha256": "6d2546bb189c732a8ca29af9e22457b152387d158aa459e4ac2ce1e51788b7fb"
+    },
+    {
+      "path": "assets/fonts/ZCOOLXiaoWei-OFL.txt",
+      "bytes": 4400,
+      "sha256": "a094514ca57cf8f9c5e8d8d1adab5d8cd3a377297ff016f9df2c05b3ecd77f0a"
+    },
+    {
+      "path": "assets/fonts/ZCOOLXiaoWei-Regular.ttf",
+      "bytes": 6313808,
+      "sha256": "a42b620140f493db42f741351dfbf343c0936d58588ee8004b8b2a218d997ff1"
+    },
+    {
+      "path": "assets/jinse-v6.glb",
+      "bytes": 1853020,
+      "sha256": "581ee518c578c837d06b94960e374bf4c03f9cb150503568725073dc3aa796c5"
+    },
+    {
+      "path": "assets/landscape-v6.png",
+      "bytes": 1827915,
+      "sha256": "c97c28f832aa3629c14f98e3452c17744a58819c6b2fd0107a9d53bb2af47c8c"
+    },
+    {
+      "path": "assets/memories-v4.png",
+      "bytes": 3298376,
+      "sha256": "7fb84945568fc7581fde6433db9f09ae7a45b3bd84030196eaba505d948d3d8b"
+    },
+    {
+      "path": "assets/poet-v6.png",
+      "bytes": 2143443,
+      "sha256": "0a811d3cbb9dd51946846994fef65e0f095e139541ac4242777fea702fc6690c"
+    },
+    {
+      "path": "assets/wing-v4.png",
+      "bytes": 2573189,
+      "sha256": "c7de63741665cc5f51f6823121662bbedce12e39dbb0f1b48e5edab84e62c01a"
+    },
+    {
+      "path": "cue-data.js",
+      "bytes": 4783,
+      "sha256": "66a6dc0033d9cc469e79f4c72f4540ce625a45905a40aaa1a01a6a897d6c183a"
+    },
+    {
+      "path": "design-v6.css",
+      "bytes": 4898,
+      "sha256": "15effa8c2237cf970fd5068885ae4d2327c3be29c2b5d9243b887851bbf054a8"
+    },
+    {
+      "path": "index.html",
+      "bytes": 1091,
+      "sha256": "357869ecea3698a4be7a00d92ab5a66f3ce62ae042226991c4027bb8235068a5"
+    },
+    {
+      "path": "scene-v6.js",
+      "bytes": 19693,
+      "sha256": "05ee1bc60e85530d089d14e91605f3d4e97f63f5d5f277414bbf3fa9592d94b9"
+    },
+    {
+      "path": "stage-v6.js",
+      "bytes": 11257,
+      "sha256": "d7e0971cdf6e9e9d90f4cb43295317033b567cbbac6cf267ca02205d1735b48b"
+    },
+    {
+      "path": "vendor/THREE-LICENSE.txt",
+      "bytes": 1081,
+      "sha256": "4c40a1ef62450b857c3b2aaf294936304cd552d965fbcd9d32d4c5bcf4ba4454"
+    },
+    {
+      "path": "vendor/loaders/GLTFExporter.js",
+      "bytes": 81884,
+      "sha256": "76526d2be01c3fdf17c8efcf7c1c67dfd1ef30ede3196865eb69fa49196f80aa"
+    },
+    {
+      "path": "vendor/loaders/GLTFLoader.js",
+      "bytes": 110273,
+      "sha256": "45139faddd5aaf48ed2d62203d976e5cbd703db1a592de40527f9f6cf58abd44"
+    },
+    {
+      "path": "vendor/three.module.js",
+      "bytes": 1314681,
+      "sha256": "ce1fa418de16a19495a9f72495580e3015d7745c296d3ce0485897f902ddedfb"
+    },
+    {
+      "path": "vendor/utils/BufferGeometryUtils.js",
+      "bytes": 31768,
+      "sha256": "c25b7930e570e9ec56173cd3b866ec8d2e10016630db3937efb439daf1cedbf6"
+    }
+  ]
+}
