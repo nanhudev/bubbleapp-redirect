@@ -29,3 +29,25 @@ body[data-layout="poem"] #source{top:auto;bottom:-3.3em;width:36em}
 .note-position{font-size:11px;letter-spacing:.15em;color:#8c805e;margin-bottom:.8em}
 body[data-cue="1"] #body,body[data-cue="2"] #body,body[data-cue="5"] #body,body[data-cue="6"] #body,body[data-cue="11"] #body{font-size:clamp(19px,1.35vw,26px)}
 @media(max-width:800px){body[data-scene="6"] #words{left:7%;width:86%;top:8%;max-height:84%;pointer-events:auto}body[data-scene="6"] #title{font-size:34px}body[data-scene="6"] #body{font-size:18px}.reading-three,.reading-steps{grid-template-columns:1fr 1fr;gap:20px}#body .poem-full{font-size:.9em;letter-spacing:0}body[data-layout="poem"] #body{width:12em}}
+
+/* Scholarly report: sustained close reading and verifiable marginal citations. */
+body[data-layout="annotated"] #words{left:6%;top:9%;width:59%;max-height:83%;padding:1.5% 2.3% 1.6% 1.8%;overflow:auto;pointer-events:auto;background:linear-gradient(90deg,#f2efe5f5 0%,#f2efe5ef 78%,#f2efe5d9 100%);scrollbar-width:thin}
+body[data-layout="annotated"] #eyebrow,body[data-layout="reading"] #eyebrow{font-size:clamp(12px,.85vw,16px);letter-spacing:.2em;margin-bottom:.8em}
+body[data-layout="annotated"] #title{writing-mode:horizontal-tb;height:auto;font-size:clamp(31px,2.7vw,52px);line-height:1.25;letter-spacing:.045em;margin:0 0 .55em;color:#214e3b}
+body[data-layout="annotated"] #body{position:static;left:auto;top:auto;width:auto;max-width:none;margin-top:0;font-size:clamp(17px,1.12vw,22px);line-height:1.8;letter-spacing:.01em;color:#314d41}
+body[data-layout="annotated"] #source{position:static;top:auto;bottom:auto;width:auto;margin-top:1.2em;font-size:clamp(10px,.7vw,13px);letter-spacing:.02em}
+body[data-scene="6"] #words{left:7%;top:7%;width:86%;max-height:85%;padding:0 1% 1% 0;pointer-events:auto}
+body[data-scene="6"] #title{font-size:clamp(32px,2.8vw,54px);line-height:1.25;letter-spacing:.045em;margin-bottom:.55em}
+body[data-scene="6"] #body{font-size:clamp(18px,1.2vw,24px);line-height:1.85;letter-spacing:.01em;margin-top:0;color:#304b3f}
+body[data-scene="6"] #source{font-size:clamp(11px,.72vw,14px);margin-top:1.2em;letter-spacing:.01em}
+#body .argument{font-size:1.04em;line-height:1.8;margin:.3em 0 1.1em;color:#6e543e;max-width:52em}
+#body .critical-columns{display:grid;grid-template-columns:1fr 1fr;gap:4%;align-items:start}
+#body .critical-columns section{padding-top:.65em;border-top:1px solid #a6977360}
+#body .critical-columns section h2{font-size:1.02em;font-weight:400;color:#936147;letter-spacing:.1em;margin:0 0 .6em}
+#body .critical-columns section p{font-size:1em;line-height:1.85;letter-spacing:.01em;text-align:justify;margin:.4em 0 .8em}
+#body .text-evidence{font-size:1.01em;line-height:1.7;margin:.3em 0 1em;padding-left:1em;border-left:2px solid #a48c61;color:#5d614c}
+#body .textual-note{font-size:.92em;line-height:1.9;max-width:54em;margin:1em 0 0}
+#body .poem-full{font-size:1.12em;line-height:2;letter-spacing:.08em}
+body[data-scene="6"][data-variant="fullpoem"] #body .argument{margin:1.3em 0 .6em}
+@media(max-width:1350px) and (min-width:801px){body[data-layout="annotated"] #words{left:5%;top:6%;width:60%;max-height:88%;padding:1.3% 2%}body[data-layout="annotated"] #body{font-size:17px;line-height:1.75}body[data-layout="annotated"] #title{font-size:33px}body[data-scene="6"] #body{font-size:18px;line-height:1.8}#body .critical-columns section p{line-height:1.75;margin:.35em 0 .7em}}
+@media(max-width:800px){body[data-layout="annotated"] #words{left:5%;top:6%;width:90%;max-height:87%;padding:4%;background:#f2efe5eb}body[data-layout="annotated"] #title,body[data-scene="6"] #title{font-size:28px}body[data-layout="annotated"] #body,body[data-scene="6"] #body{font-size:17px}#body .critical-columns{grid-template-columns:1fr;gap:14px}body[data-scene="6"] #words{top:5%;max-height:89%}}

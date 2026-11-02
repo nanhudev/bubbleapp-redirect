@@ -1,5 +1,5 @@
 {
-  "release": "literature-2026-11-02",
+  "release": "scholarly-2026-11-02",
   "url": "https://bubbleapp.cn/jinse/",
   "files": [
     {
@@ -59,18 +59,18 @@
     },
     {
       "path": "cue-data.js",
-      "bytes": 22422,
-      "sha256": "a4094081c4e9ba9918a7e5e7290e16e39473edd2f2efa7ee8f9c53bccfb7ef4d"
+      "bytes": 62646,
+      "sha256": "fbe83414eb45da4ee7487bbdc2bef908261d668af7142e7f358c4a587396bb2c"
     },
     {
       "path": "design-v6.css",
-      "bytes": 7665,
-      "sha256": "9d7fe648ad84c0aa90ac4e62d4446dc61afb12d1564c7c02b516182b1561d945"
+      "bytes": 10804,
+      "sha256": "f5865132cdf5a72647164e26d34b3273a809f500948510d9d2bac44372f04ae2"
     },
     {
       "path": "index.html",
-      "bytes": 1147,
-      "sha256": "4b7ce7504b886f004b558856af6d14f1f9a2706b5804dee7b2da30ddf89aae34"
+      "bytes": 1144,
+      "sha256": "992dfe5e83dc3faa2e88e6ab127dfbb20f90ee6ab311214c05351700baee7759"
     },
     {
       "path": "scene-v6.js",
@@ -79,8 +79,8 @@
     },
     {
       "path": "stage-v6.js",
-      "bytes": 11627,
-      "sha256": "dedc68fbd596ea6d9d6eefa12ddb60da2937c8e832afd51b8429b420bb2e0e67"
+      "bytes": 12335,
+      "sha256": "42c81c053d86c5e24f3ddd86e16fbeddef35577829eccdf21161ca4c375ade74"
     },
     {
       "path": "vendor/THREE-LICENSE.txt",
