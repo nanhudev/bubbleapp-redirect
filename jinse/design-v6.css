@@ -86,3 +86,36 @@ body[data-layout="cinematic"] .poem-full{font-size:clamp(17px,1.2vw,23px);line-h
 body[data-biography="true"] #body .scroll-fact{color:#956849;font-size:1.06em;margin:0 0 1em}
 
 body[data-biography="true"] #words{width:32%}
+/* Report typography: poetry keeps brushwork; explanations use clear text faces. */
+body[data-layout="cinematic"] #body,#study,#gloss{font-family:'PingFang SC','Microsoft YaHei',JinseText,system-ui,sans-serif;font-weight:400;letter-spacing:.015em;color:#233f33}
+body[data-layout="cinematic"] #body{font-size:clamp(18px,1.16vw,23px);line-height:1.85}
+body[data-layout="cinematic"] #body section p{line-height:1.85;margin:.75em 0}
+body[data-layout="cinematic"] #title{font-family:'Songti SC','STSong',JinseText,serif;font-size:clamp(28px,2.1vw,41px);font-weight:600;line-height:1.45}
+body[data-layout="cinematic"] #body .argument{color:#765435;line-height:1.85}
+body[data-layout="cinematic"] #source{color:#6f664f;opacity:1;font-family:'PingFang SC',system-ui,sans-serif;font-size:clamp(11px,.7vw,14px)}
+#reportOutline{position:absolute;top:3.6%;right:5%;display:flex;gap:25px;z-index:3;align-items:center}
+#reportOutline button{font-family:'PingFang SC','Microsoft YaHei',sans-serif;font-size:12px;gap:8px;padding:10px 0;letter-spacing:.08em;color:#7a785f;border-bottom:1px solid transparent}
+#reportOutline button b{font-family:JinseText;font-weight:400;font-size:17px;color:#a08555}
+#reportOutline button.active{color:#294c3c;border-bottom-color:#a58a55}
+#reportOutline[hidden],#interactionHint[hidden],#gloss[hidden],#pluckAction[hidden],#structureAction[hidden]{display:none}
+#interactionHint{position:absolute;left:8%;bottom:10.5%;font:12px/1.7 'PingFang SC',sans-serif;letter-spacing:.12em;color:#8c7450;pointer-events:none}
+#studyControls{gap:26px;bottom:3.4%}
+#studyControls button{font-family:'PingFang SC','Microsoft YaHei',sans-serif;font-size:13px;letter-spacing:.08em}
+#body .inline-word{display:inline!important;padding:0!important;margin:0!important;border:0;border-bottom:1px solid #a57d4955;border-radius:0;font:inherit!important;line-height:inherit!important;color:#805631;letter-spacing:inherit;cursor:pointer;vertical-align:baseline;transition:color .2s,border-color .2s}
+#body .inline-word:hover,#body .inline-word:focus-visible{color:#aa562f;border-color:#aa562f;outline:0}
+#gloss{position:absolute;right:5%;bottom:12%;width:37%;max-height:32%;padding:25px 30px;background:#f3efdfef;border-left:2px solid #ac8c55;box-shadow:0 15px 60px #244b3317;z-index:4;overflow:auto;font-size:18px;line-height:1.85;animation:glossInk .4s ease-out}
+#gloss>b{font-family:JinseBrush;font-size:32px;font-weight:400;color:#98603a}
+#gloss p{margin:.6em 0 0}
+#closeGloss{float:right;font:22px/1 serif;padding:0;letter-spacing:0}
+@keyframes glossInk{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+#words.ink-enter #body p{animation:glossInk .65s ease-out both}
+#words.ink-enter #body section p:nth-child(2){animation-delay:.18s}
+body[data-biography="true"] #words{left:5.5%;top:29%;width:24.5%;max-height:56%}
+body[data-biography="true"] #title{font-size:clamp(25px,1.7vw,33px);line-height:1.45}
+body[data-biography="true"] #body{font-size:clamp(17px,1.03vw,21px);line-height:1.8}
+body[data-biography="true"] #body .scroll-fact{font-size:1em;color:#805735;margin:.4em 0 1em}
+body[data-biography="true"] #interactionHint,body[data-biography="true"] #studyControls{left:5.5%}
+@media(max-width:1350px) and (min-width:801px){#reportOutline{gap:17px}#reportOutline button{font-size:11px}body[data-layout="cinematic"] #body{font-size:18px}body[data-biography="true"] #body{font-size:17px}body[data-biography="true"] #words{width:25%;top:27%;max-height:57%}body[data-biography="true"] #title{font-size:25px}#interactionHint{bottom:11%}}
+@media(max-width:800px){#reportOutline{top:2%;right:4%;left:4%;justify-content:space-between;gap:6px}#reportOutline button{font-size:9px;gap:3px}#reportOutline button b{font-size:12px}body[data-layout="cinematic"] #body{font-size:16px}body[data-biography="true"] #words{top:28%;width:28%;left:4%;max-height:56%}body[data-biography="true"] #title{font-size:20px}body[data-biography="true"] #body{font-size:14px}#studyControls{gap:14px}#studyControls button{font-size:11px}#interactionHint{font-size:10px;bottom:10%}#gloss{right:3%;bottom:13%;width:52%;padding:18px;font-size:15px}}
+#words.ink-enter #body p{animation:none!important}
+#gloss{animation:none}

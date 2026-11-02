@@ -1,5 +1,5 @@
 {
-  "release": "immersive-2026-11-02",
+  "release": "performance-2026-11-02-r2",
   "url": "https://bubbleapp.cn/jinse/",
   "files": [
     {
@@ -59,38 +59,43 @@
     },
     {
       "path": "cue-data.js",
-      "bytes": 62646,
-      "sha256": "fbe83414eb45da4ee7487bbdc2bef908261d668af7142e7f358c4a587396bb2c"
+      "bytes": 52747,
+      "sha256": "a229ac5cdbe8dace5d11ab1cf21844be16547005c9e5739cf1a97055b21ea1de"
     },
     {
       "path": "design-v6.css",
-      "bytes": 14524,
-      "sha256": "783cba7218a05f7a0374b111345812e83a597f62c44b27b88f34e49c5c55cf55"
+      "bytes": 18743,
+      "sha256": "db7f0fd4b6693df004381228d184003da54bee290a8d937dbd2968cc6813cbf2"
     },
     {
       "path": "dramaturgy-v7.js",
-      "bytes": 2122,
-      "sha256": "8761e728ffe7360658d85d276fc5b83f8fd1cbbecd1b5db2c9016ab9d48193c8"
+      "bytes": 5040,
+      "sha256": "3a2f5a442fef4fbbefbc08f0dd0e234b6bc56e433b6896eed47f3656c68d7357"
     },
     {
       "path": "index.html",
-      "bytes": 1352,
-      "sha256": "86f955ff65fca35160985bd0ec1aa1dabd425b39130affb0ab20c8e856a0ccf8"
+      "bytes": 1629,
+      "sha256": "dee90864fd2f488746860778607b97edb37c149d75ef4dd5be02d5c09b77f954"
+    },
+    {
+      "path": "instrument-performance-v8.js",
+      "bytes": 4336,
+      "sha256": "019edd5849449138dae9906feb5e693f395557b0022e416451add40fa96a87b5"
     },
     {
       "path": "poetic-space-v7.js",
-      "bytes": 10989,
-      "sha256": "6e8c7d30926e26e4f2e3933d4e29fee31180a3ee407cb7d78b91a2608c35297e"
+      "bytes": 13893,
+      "sha256": "879d060606db57b225f5e9a86db19c8554ea1f6f84b51d68e14b00da8cc50e67"
     },
     {
       "path": "scene-v6.js",
-      "bytes": 20037,
-      "sha256": "8f795ebad2e38043380b2ca8c2bfcf21440a43e5055a4160b16694dde107ae5c"
+      "bytes": 20849,
+      "sha256": "2e9748821cc377eb30c0efa7e4d2b88f160a2ba80f5ef3ef3574bd3512a31e29"
     },
     {
       "path": "stage-v6.js",
-      "bytes": 15788,
-      "sha256": "388cacdd77210cc2abf9b91dfe733e1588ece38aba6db4eb5a04960efa2915f4"
+      "bytes": 21931,
+      "sha256": "4e2582ddc03b9eb22a48accd0b848835dfd2269cb0388bd0e3ca1546c029cf47"
     },
     {
       "path": "vendor/THREE-LICENSE.txt",
