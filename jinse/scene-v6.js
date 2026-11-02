@@ -1,4 +1,5 @@
 import * as T from 'three';
+import {createPoeticSpace} from './poetic-space-v7.js?v=immersive-2026-11-02';
 import {GLTFLoader} from './vendor/loaders/GLTFLoader.js';
 const clamp=T.MathUtils.clamp;
 export const smooth=t=>{t=clamp(t,0,1);return t*t*(3-2*t)};
@@ -46,6 +47,7 @@ export async function createWorld(canvas,{low=false}={}){
  const failures=[];const optional=async(url,fallback)=>{try{return await texture(url)}catch(e){failures.push(url);return texture(fallback)}};
  const [gltf,landscape,dream,portrait,wing,atlas]=await Promise.all([
   new GLTFLoader().loadAsync('./assets/jinse-v6.glb'),texture('./assets/landscape-v6.png'),optional('./assets/dream-v6.png','./assets/landscape-v6.png'),texture('./assets/poet-v6.png'),texture('./assets/wing-v4.png'),optional('./assets/memories-v4.png','./assets/landscape-v6.png')]);
+ await document.fonts.ready;const poetic=createPoeticSpace(scene,camera,atlas);
  // All three-dimensional object geometry is authored in the editable Blender source.
  const instrument=new T.Group();instrument.name='Jinse_Instrument';scene.add(instrument);instrument.add(gltf.scene);let strings=[],bridges=[];
  gltf.scene.traverse(o=>{if(o.isMesh){o.castShadow=!/Gold|Inlay|String/.test(o.name);o.receiveShadow=true;if(o.material){o.material.envMapIntensity=.65;if(o.name.startsWith('String_'))o.visible=false;if(o.name.startsWith('Bridge_'))bridges.push(o)}}});
@@ -66,14 +68,14 @@ export async function createWorld(canvas,{low=false}={}){
  const paperWorld=new T.Group();scene.add(paperWorld);let tinyPaper=mesh(paperWorld,new T.PlaneGeometry(5.1,3.2,16,10),new T.MeshBasicMaterial({color:0xe2ddc7,side:T.DoubleSide,transparent:true,opacity:.75,toneMapped:false}),[0,1.3,0]);paperWorld.rotation.y=-.28;
  const arcCurve=new T.CatmullRomCurve3([V([10,-.4,1]),V([8,2.0,2.5]),V([5.5,2.2,3.8]),V([2.7,1.7,2])]);let arc=mesh(scene,new T.TubeGeometry(arcCurve,100,.009,6,false),new T.MeshStandardMaterial({color:0xb69a5b,roughness:.45,metalness:.6}));
  const textGroup=new T.Group();scene.add(textGroup);let textRecords=[];
- function clearText(){for(let m of [...textGroup.children]){m.geometry.dispose();m.material.map?.dispose();m.material.dispose();textGroup.remove(m)}textRecords=[];}
- function captureText(element){clearText();camera.updateMatrixWorld();let walker=document.createTreeWalker(element,NodeFilter.SHOW_TEXT);let n;const forward=new T.Vector3();camera.getWorldDirection(forward);let unit=2*Math.tan(T.MathUtils.degToRad(camera.fov/2))*8/innerHeight;
+ function clearText(){poetic.clearFlight();for(let m of [...textGroup.children]){m.geometry.dispose();m.material.map?.dispose();m.material.dispose();textGroup.remove(m)}textRecords=[];}
+ function captureText(element){clearText();poetic.capture();camera.updateMatrixWorld();let walker=document.createTreeWalker(element,NodeFilter.SHOW_TEXT);let n;const forward=new T.Vector3();camera.getWorldDirection(forward);let unit=2*Math.tan(T.MathUtils.degToRad(camera.fov/2))*8/innerHeight;
   while(n=walker.nextNode()){let off=0;for(let ch of [...n.textContent]){let end=off+ch.length,range=document.createRange();range.setStart(n,off);range.setEnd(n,end);off=end;if(!ch.trim())continue;let rect=range.getBoundingClientRect();if(!rect.width||!rect.height)continue;let style=getComputedStyle(n.parentElement),cv=document.createElement('canvas');cv.width=cv.height=512;let ctx=cv.getContext('2d');ctx.font=`360px ${style.fontFamily}`;ctx.fillStyle=style.color;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(ch,256,268);let map=new T.CanvasTexture(cv);map.colorSpace=T.SRGBColorSpace;let size=parseFloat(style.fontSize)*unit*512/360;let m=mesh(textGroup,new T.PlaneGeometry(size,size),new T.MeshBasicMaterial({map,transparent:true,side:T.DoubleSide,depthWrite:false,toneMapped:false}));let ndc=new T.Vector3((rect.x+rect.width/2)/innerWidth*2-1,-(rect.y+rect.height/2)/innerHeight*2+1,.5);let ray=ndc.unproject(camera).sub(camera.position).normalize();m.position.copy(camera.position).addScaledVector(ray,8/ray.dot(forward));m.quaternion.copy(camera.quaternion);textRecords.push({mesh:m,start:m.position.clone(),back:forward.clone().multiplyScalar(-1),side:(rect.x+rect.width/2<innerWidth/2?-1:1)});}}
  }
- function updateText(progress){for(let {mesh:m,start,back,side} of textRecords){m.position.copy(start).addScaledVector(back,smooth(progress)*16);m.position.x+=side*smooth(progress)*3.5;m.rotateY(0);m.material.opacity=progress<.9?1:(1-progress)*10;}}
+ function updateText(progress){poetic.travel(progress);for(let {mesh:m,start,back,side} of textRecords){m.position.copy(start).addScaledVector(back,smooth(progress)*16);m.position.x+=side*smooth(progress)*3.5;m.rotateY(0);m.material.opacity=progress<.9?1:(1-progress)*10;}}
  function animateStrings(time,cue){for(let line of strings){let {id,x,z,peak}=line.userData,a=line.geometry.attributes.position,active=(cue>=7&&cue<=10&&id===(cue-7)*11+5)||(cue===0&&id===17);for(let j=0;j<65;j++){let xx=-5.86+j*11.72/64,t=xx<x?(xx+5.86)/(x+5.86):(5.86-xx)/(5.86-x);let vibrate=active?Math.sin(j*Math.PI/64)*Math.sin(time*24)*Math.exp(-time*.95)*.055:0;a.setXYZ(j,xx,.825+t*(peak-.825)+vibrate,z);}a.needsUpdate=true;line.material.opacity=cue===3&&id>=25?.08:active?.92:.52;line.material.color.setHex(active?0xffdfa0:0xc7aa70);}}
  let previousMemory=-1;
- function apply(pose,time,cue,{walk=0,flight=0,from=cue}={}){
+ function apply(pose,time,cue,{walk=0,flight=0,from=cue,annotation=null,phase=0}={}){
   camera.position.fromArray(pose.camera);camera.fov=pose.fov;camera.lookAt(V(pose.target));camera.updateProjectionMatrix();camera.updateMatrixWorld();
   instrument.visible=pose.instrumentAlpha>.01;instrument.position.fromArray(pose.instrument);instrument.rotation.set(pose.instrumentRot[0],pose.instrumentRot[1],pose.instrumentRot[2]);instrument.scale.setScalar(pose.instrumentScale);
   // Geometry retains depth; transparency is only used while a string occludes the camera during a transition.
@@ -88,10 +90,10 @@ export async function createWorld(canvas,{low=false}={}){
   passButterfly.group.visible=pose.pass>.01;passButterfly.group.position.copy(camera.position).add(V([6-pose.pass*12,0,-5]));passButterfly.group.scale.setScalar(Math.sin(pose.pass*Math.PI)*4.5+.2);passButterfly.group.quaternion.copy(camera.quaternion);passButterfly.animate(time);
   paperWorld.visible=pose.paper>.01;paperWorld.position.set(6,-.7,-5);tinyPaper.material.opacity=pose.paper*.8;
   arc.visible=pose.arc>.01;arc.material.transparent=true;arc.material.opacity=pose.arc;
-  animateStrings(time,cue);renderer.render(scene,camera);
+  poetic.apply(pose,time,annotation,`${cue}:${phase}`,flight);animateStrings(time,cue);renderer.render(scene,camera);
  }
- function resize(){renderer.setSize(innerWidth,innerHeight);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();}
- function inspect(){let bounds=new T.Box3().setFromObject(instrument);return {camera:camera.position.toArray(),fov:camera.fov,model:instrument.position.toArray(),strings:strings.length,bridges:bridges.length,bones:actor.bones.map(b=>b.name),triangles:renderer.info.render.triangles,calls:renderer.info.render.calls,textures:renderer.info.memory.textures,failures,modelBounds:{min:bounds.min.toArray(),max:bounds.max.toArray()}}}
+ function resize(){poetic.resetText();renderer.setSize(innerWidth,innerHeight);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();}
+ function inspect(){let bounds=new T.Box3().setFromObject(instrument);return {...poetic.inspect(),camera:camera.position.toArray(),fov:camera.fov,model:instrument.position.toArray(),strings:strings.length,bridges:bridges.length,bones:actor.bones.map(b=>b.name),triangles:renderer.info.render.triangles,calls:renderer.info.render.calls,textures:renderer.info.memory.textures,failures,modelBounds:{min:bounds.min.toArray(),max:bounds.max.toArray()}}}
  async function exportActor(){
   const {GLTFExporter}=await import('./vendor/loaders/GLTFExporter.js');
   const position=actor.group.position.clone(),quaternion=actor.group.quaternion.clone(),scale=actor.group.scale.clone(),opacity=actor.skin.material.opacity;

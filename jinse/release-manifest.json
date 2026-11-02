@@ -1,5 +1,5 @@
 {
-  "release": "scholarly-2026-11-02",
+  "release": "immersive-2026-11-02",
   "url": "https://bubbleapp.cn/jinse/",
   "files": [
     {
@@ -64,23 +64,33 @@
     },
     {
       "path": "design-v6.css",
-      "bytes": 10804,
-      "sha256": "f5865132cdf5a72647164e26d34b3273a809f500948510d9d2bac44372f04ae2"
+      "bytes": 14524,
+      "sha256": "783cba7218a05f7a0374b111345812e83a597f62c44b27b88f34e49c5c55cf55"
+    },
+    {
+      "path": "dramaturgy-v7.js",
+      "bytes": 2122,
+      "sha256": "8761e728ffe7360658d85d276fc5b83f8fd1cbbecd1b5db2c9016ab9d48193c8"
     },
     {
       "path": "index.html",
-      "bytes": 1144,
-      "sha256": "992dfe5e83dc3faa2e88e6ab127dfbb20f90ee6ab311214c05351700baee7759"
+      "bytes": 1352,
+      "sha256": "86f955ff65fca35160985bd0ec1aa1dabd425b39130affb0ab20c8e856a0ccf8"
+    },
+    {
+      "path": "poetic-space-v7.js",
+      "bytes": 10989,
+      "sha256": "6e8c7d30926e26e4f2e3933d4e29fee31180a3ee407cb7d78b91a2608c35297e"
     },
     {
       "path": "scene-v6.js",
-      "bytes": 19693,
-      "sha256": "05ee1bc60e85530d089d14e91605f3d4e97f63f5d5f277414bbf3fa9592d94b9"
+      "bytes": 20037,
+      "sha256": "8f795ebad2e38043380b2ca8c2bfcf21440a43e5055a4160b16694dde107ae5c"
     },
     {
       "path": "stage-v6.js",
-      "bytes": 12335,
-      "sha256": "42c81c053d86c5e24f3ddd86e16fbeddef35577829eccdf21161ca4c375ade74"
+      "bytes": 15788,
+      "sha256": "388cacdd77210cc2abf9b91dfe733e1588ece38aba6db4eb5a04960efa2915f4"
     },
     {
       "path": "vendor/THREE-LICENSE.txt",
