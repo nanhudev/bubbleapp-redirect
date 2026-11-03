@@ -1,12 +1,15 @@
 import * as T from 'three';
-import {createPoeticSpace} from './poetic-space-v7.js?v=original-motion-2026-11-03-r2';
-import {instrumentPerformance} from './instrument-performance-v8.js?v=original-motion-2026-11-03-r2';
+import {downloadAsset} from './asset-transport.js?v=original-motion-2026-11-03-r4';
+import {createPoeticSpace} from './poetic-space-v7.js?v=original-motion-2026-11-03-r4';
+import {instrumentPerformance} from './instrument-performance-v8.js?v=original-motion-2026-11-03-r4';
 import {GLTFLoader} from './vendor/loaders/GLTFLoader.js';
 const clamp=T.MathUtils.clamp;
 export const smooth=t=>{t=clamp(t,0,1);return t*t*(3-2*t)};
 const V=a=>new T.Vector3(...a);
 const texLoader=new T.TextureLoader();
-const texture=async url=>{let t=await texLoader.loadAsync(url);t.colorSpace=T.SRGBColorSpace;return t};
+const byteSizes={"./assets/landscape-v6.webp": 1227348, "./assets/poet-v6.webp": 1343998, "./assets/wing-v4.webp": 1749608, "./assets/dream-v6.webp": 1351826, "./assets/memories-v4.webp": 2333764};
+async function retryAsset(task,name){for(let attempt=0;attempt<3;attempt++){try{return await task(attempt)}catch(error){if(attempt===2)throw new Error(name+' 未能下载，请重试');await new Promise(resolve=>setTimeout(resolve,500*(attempt+1)))}}}
+const texture=async url=>{const data=await retryAsset(attempt=>downloadAsset(url+(attempt?'?retry='+attempt:''),byteSizes[url]),url.split('/').pop());const local=URL.createObjectURL(new Blob([data],{type:'image/webp'}));try{let t=await texLoader.loadAsync(local);t.colorSpace=T.SRGBColorSpace;return t}finally{URL.revokeObjectURL(local)}};
 function mesh(parent,geometry,material,position=[0,0,0]){let m=new T.Mesh(geometry,material);m.position.fromArray(position);parent.add(m);return m}
 function stroke(parent,pts,material){let m=new T.Line(new T.BufferGeometry().setFromPoints(pts.map(V)),material);parent.add(m);return m}
 function softTexture(){let c=document.createElement('canvas');c.width=c.height=256;let x=c.getContext('2d'),g=x.createRadialGradient(128,128,0,128,128,125);g.addColorStop(0,'rgba(250,248,235,.35)');g.addColorStop(.45,'rgba(250,248,235,.18)');g.addColorStop(1,'rgba(250,248,235,0)');x.fillStyle=g;x.fillRect(0,0,256,256);return new T.CanvasTexture(c)}
@@ -46,7 +49,7 @@ export async function createWorld(canvas,{low=false,onProgress=()=>{}}={}){
  const contextControl=renderer.getContext().getExtension('WEBGL_lose_context');let envTarget=environment(renderer);scene.environment=envTarget.texture;scene.environmentIntensity=.38;
  scene.add(new T.HemisphereLight(0xfffae8,0x486854,1.3));let key=new T.DirectionalLight(0xffefd1,2.1);key.position.set(-4,13,9);key.castShadow=!low;key.shadow.mapSize.set(2048,2048);Object.assign(key.shadow.camera,{left:-17,right:17,top:15,bottom:-15,near:.5,far:50});key.shadow.bias=-.0005;key.shadow.normalBias=.012;scene.add(key);let rim=new T.DirectionalLight(0xc7e2d6,1.0);rim.position.set(8,6,-8);scene.add(rim);
  const failures=[];const optional=async(url,fallback)=>{try{return await texture(url)}catch(e){failures.push(url);return texture(fallback)}};
- const loadModel=async()=>{if(!('DecompressionStream' in window))return new GLTFLoader().loadAsync('./assets/jinse-v6.glb');const response=await fetch('./assets/jinse-v6.glb.gz');if(!response.ok)throw new Error('锦瑟模型加载失败');const data=await new Response(response.body.pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();return new GLTFLoader().parseAsync(data,new URL('./assets/',location.href).href)};
+ const loadModel=()=>retryAsset(async attempt=>{if(!('DecompressionStream' in window))return new GLTFLoader().loadAsync('./assets/jinse-v6.glb');const compressed=await downloadAsset('./assets/jinse-v6.glb.gz'+(attempt?'?retry='+attempt:''),539773);const data=await new Response(new Blob([compressed]).stream().pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();return new GLTFLoader().parseAsync(data,new URL('./assets/',location.href).href)},'锦瑟模型');
  let loadedAssets=0;const track=promise=>promise.then(asset=>{onProgress(++loadedAssets,7);return asset});
  const [gltf,landscape,dream,portrait,wing,atlas]=await Promise.all([
   loadModel(),texture('./assets/landscape-v6.webp'),optional('./assets/dream-v6.webp','./assets/landscape-v6.webp'),texture('./assets/poet-v6.webp'),texture('./assets/wing-v4.webp'),optional('./assets/memories-v4.webp','./assets/landscape-v6.webp')].map(track));

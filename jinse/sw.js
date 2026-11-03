@@ -1,8 +1,8 @@
-const RELEASE = 'jinse-original-motion-2026-11-03-r2';
-const VERSION = 'original-motion-2026-11-03-r2';
+const RELEASE = 'jinse-original-motion-2026-11-03-r4';
+const VERSION = 'original-motion-2026-11-03-r4';
 const BASE = new URL('./', self.location.href);
 const FILES = ['index.html', 'design-v6.css', 'stage-v6.js', 'scene-v6.js',
-  'cue-data.js', 'dramaturgy-v7.js', 'poetic-space-v7.js', 'instrument-performance-v8.js',
+  'cue-data.js', 'asset-transport.js', 'dramaturgy-v7.js', 'poetic-space-v7.js', 'instrument-performance-v8.js',
   'vendor/three.module.js', 'vendor/loaders/GLTFLoader.js', 'vendor/utils/BufferGeometryUtils.js',
   'assets/jinse-v6.glb.gz', 'assets/landscape-v6.webp', 'assets/dream-v6.webp',
   'assets/poet-v6.webp', 'assets/wing-v4.webp', 'assets/memories-v4.webp',

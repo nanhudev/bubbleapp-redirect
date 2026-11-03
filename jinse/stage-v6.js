@@ -1,7 +1,7 @@
 import * as T from 'three';
-import {CUES} from './cue-data.js?v=original-motion-2026-11-03-r2';
-import {createWorld,smooth} from './scene-v6.js?v=original-motion-2026-11-03-r2';
-import {dramaturgy,REPORT_CHAPTERS,GLOSSES} from './dramaturgy-v7.js?v=original-motion-2026-11-03-r2';
+import {CUES} from './cue-data.js?v=original-motion-2026-11-03-r4';
+import {createWorld,smooth} from './scene-v6.js?v=original-motion-2026-11-03-r4';
+import {dramaturgy,REPORT_CHAPTERS,GLOSSES} from './dramaturgy-v7.js?v=original-motion-2026-11-03-r4';
 const STAGING=dramaturgy(CUES);
 const $=s=>document.querySelector(s),canvas=$('#stage'),low=new URLSearchParams(location.search).has('low');
 
@@ -69,5 +69,5 @@ canvas.addEventListener('pointermove',e=>{if(!gesture||flight)return;if(gesture.
 window.addEventListener('pointerup',()=>{gesture=null});window.addEventListener('pointercancel',()=>{gesture=null;consumeClick=false});
 canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();$('#error p').textContent='显示连接已中断。可恢复画面或重新载入当前演示。';$('#error').hidden=false;});canvas.addEventListener('webglcontextrestored',()=>{world.restoreEnvironment();$('#error').hidden=true;go(index,{replay:true})});canvas.addEventListener('pointermove',e=>{if(!world||flight)return;canvas.style.cursor=world.hitWord(e.clientX,e.clientY)||(index>=0&&index<=5&&world.hitString(e.clientX,e.clientY)>=0)?'pointer':'default'});
 window.addEventListener('resize',()=>world?.resize());
-try{world=await createWorld(canvas,{low,onProgress:(done,total)=>{$('#begin span').textContent='正在展卷 '+Math.round(done/total*100)+'%';}});await document.fonts.ready;$('#begin').disabled=false;$('#begin').setAttribute('aria-busy','false');$('#begin span').textContent='开始演示';currentPose=poseFor(0);updateWords();world.apply(currentPose,0,0,{annotation:{poem:'',term:''},phase:0});raf=requestAnimationFrame(animate);}catch(e){$('#error p').textContent='本地绘画或模型未能载入：'+e.message;$('#error').hidden=false;$('#recover').hidden=true;console.error(e);}
+try{world=await createWorld(canvas,{low,onProgress:(done,total)=>{$('#begin span').textContent='正在展卷 '+Math.round(done/total*100)+'%';}});await document.fonts.ready;$('#begin').disabled=false;$('#begin').setAttribute('aria-busy','false');window.dispatchEvent(new Event('jinse-ready'));$('#begin span').textContent='开始演示';currentPose=poseFor(0);updateWords();world.apply(currentPose,0,0,{annotation:{poem:'',term:''},phase:0});raf=requestAnimationFrame(animate);}catch(e){$('#error p').textContent='本地绘画或模型未能载入：'+e.message;$('#error').hidden=false;$('#recover').hidden=true;console.error(e);}
 window.jinseDemo={get layers(){return STAGING[index].parts.length},get typedCount(){return typedCount},get phase(){return phase},setPhase,performPluck,explainWord,get stringTargets(){return world?.stringTargets()},get wordTargets(){return world?.wordTargets()},nextLayer,toggleStudy,get total(){return CUES.length},get cue(){return index},get busy(){return !!flight},go:n=>go(n,{jump:true}),inspect:()=>({...world?.inspect(),cue:index,busy:!!flight,flight:flight?.kind,progress:flight?(performance.now()-flight.start)/flight.duration:1,phase,typedCount}),exportActor:()=>world.exportActor(),testContextLost:()=>world.loseContext(),get renderInfo(){return world?.renderer.info},get pose(){return currentPose}};
