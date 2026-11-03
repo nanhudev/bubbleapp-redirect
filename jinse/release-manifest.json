@@ -1,5 +1,5 @@
 {
-  "release": "performance-2026-11-02-r2",
+  "release": "original-motion-2026-11-03",
   "url": "https://bubbleapp.cn/jinse/",
   "files": [
     {
@@ -18,9 +18,9 @@
       "sha256": "d7bdb1cee215b689e23c2f95672a6084c790542170648267a55114103d756a08"
     },
     {
-      "path": "assets/fonts/MaShanZheng-Regular.ttf",
-      "bytes": 5857936,
-      "sha256": "6d2546bb189c732a8ca29af9e22457b152387d158aa459e4ac2ce1e51788b7fb"
+      "path": "assets/fonts/MaShanZheng-report.woff2",
+      "bytes": 469040,
+      "sha256": "81d6b006ec9d680f42fb294daa02b8f5f9b795ee35851e83c68c0dcca3172e8a"
     },
     {
       "path": "assets/fonts/ZCOOLXiaoWei-OFL.txt",
@@ -28,9 +28,9 @@
       "sha256": "a094514ca57cf8f9c5e8d8d1adab5d8cd3a377297ff016f9df2c05b3ecd77f0a"
     },
     {
-      "path": "assets/fonts/ZCOOLXiaoWei-Regular.ttf",
-      "bytes": 6313808,
-      "sha256": "a42b620140f493db42f741351dfbf343c0936d58588ee8004b8b2a218d997ff1"
+      "path": "assets/fonts/ZCOOLXiaoWei-report.woff2",
+      "bytes": 382728,
+      "sha256": "99c238a85ac406f2a77e0f71eea31569a45ee508234dd150328eefb31cf933c9"
     },
     {
       "path": "assets/jinse-v6.glb",
@@ -64,8 +64,8 @@
     },
     {
       "path": "design-v6.css",
-      "bytes": 18743,
-      "sha256": "db7f0fd4b6693df004381228d184003da54bee290a8d937dbd2968cc6813cbf2"
+      "bytes": 18739,
+      "sha256": "54699db7b832acb80284006c7540f7f327cfe976cc3d35f270e82954bb3c5970"
     },
     {
       "path": "dramaturgy-v7.js",
@@ -74,8 +74,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 1629,
-      "sha256": "dee90864fd2f488746860778607b97edb37c149d75ef4dd5be02d5c09b77f954"
+      "bytes": 2029,
+      "sha256": "4276adeb5842a4fd8ee81b9c2f752ef73979eebb4ee96830825b7f2bf4fcfb43"
     },
     {
       "path": "instrument-performance-v8.js",
@@ -89,13 +89,18 @@
     },
     {
       "path": "scene-v6.js",
-      "bytes": 20849,
-      "sha256": "2e9748821cc377eb30c0efa7e4d2b88f160a2ba80f5ef3ef3574bd3512a31e29"
+      "bytes": 21003,
+      "sha256": "17508cfe218ac89916154ed3708de28a2f121e1105ec4e1d08d62ebb8fa8def6"
     },
     {
       "path": "stage-v6.js",
-      "bytes": 21931,
-      "sha256": "4e2582ddc03b9eb22a48accd0b848835dfd2269cb0388bd0e3ca1546c029cf47"
+      "bytes": 22084,
+      "sha256": "52d162513e27282d9bc0c6d69e0881397ac2ee45ce1d6d2238b84071b39b2d47"
+    },
+    {
+      "path": "sw.js",
+      "bytes": 1790,
+      "sha256": "c31b3844bbbcac4b194c782763cf5b87402f0176c7ba779624a8d97f0d072cfe"
     },
     {
       "path": "vendor/THREE-LICENSE.txt",
