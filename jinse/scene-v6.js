@@ -1,6 +1,6 @@
 import * as T from 'three';
-import {createPoeticSpace} from './poetic-space-v7.js?v=original-motion-2026-11-03';
-import {instrumentPerformance} from './instrument-performance-v8.js?v=original-motion-2026-11-03';
+import {createPoeticSpace} from './poetic-space-v7.js?v=original-motion-2026-11-03-r2';
+import {instrumentPerformance} from './instrument-performance-v8.js?v=original-motion-2026-11-03-r2';
 import {GLTFLoader} from './vendor/loaders/GLTFLoader.js';
 const clamp=T.MathUtils.clamp;
 export const smooth=t=>{t=clamp(t,0,1);return t*t*(3-2*t)};
@@ -46,9 +46,10 @@ export async function createWorld(canvas,{low=false,onProgress=()=>{}}={}){
  const contextControl=renderer.getContext().getExtension('WEBGL_lose_context');let envTarget=environment(renderer);scene.environment=envTarget.texture;scene.environmentIntensity=.38;
  scene.add(new T.HemisphereLight(0xfffae8,0x486854,1.3));let key=new T.DirectionalLight(0xffefd1,2.1);key.position.set(-4,13,9);key.castShadow=!low;key.shadow.mapSize.set(2048,2048);Object.assign(key.shadow.camera,{left:-17,right:17,top:15,bottom:-15,near:.5,far:50});key.shadow.bias=-.0005;key.shadow.normalBias=.012;scene.add(key);let rim=new T.DirectionalLight(0xc7e2d6,1.0);rim.position.set(8,6,-8);scene.add(rim);
  const failures=[];const optional=async(url,fallback)=>{try{return await texture(url)}catch(e){failures.push(url);return texture(fallback)}};
+ const loadModel=async()=>{if(!('DecompressionStream' in window))return new GLTFLoader().loadAsync('./assets/jinse-v6.glb');const response=await fetch('./assets/jinse-v6.glb.gz');if(!response.ok)throw new Error('锦瑟模型加载失败');const data=await new Response(response.body.pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();return new GLTFLoader().parseAsync(data,new URL('./assets/',location.href).href)};
  let loadedAssets=0;const track=promise=>promise.then(asset=>{onProgress(++loadedAssets,7);return asset});
  const [gltf,landscape,dream,portrait,wing,atlas]=await Promise.all([
-  new GLTFLoader().loadAsync('./assets/jinse-v6.glb'),texture('./assets/landscape-v6.png'),optional('./assets/dream-v6.png','./assets/landscape-v6.png'),texture('./assets/poet-v6.png'),texture('./assets/wing-v4.png'),optional('./assets/memories-v4.png','./assets/landscape-v6.png')].map(track));
+  loadModel(),texture('./assets/landscape-v6.webp'),optional('./assets/dream-v6.webp','./assets/landscape-v6.webp'),texture('./assets/poet-v6.webp'),texture('./assets/wing-v4.webp'),optional('./assets/memories-v4.webp','./assets/landscape-v6.webp')].map(track));
  await document.fonts.ready;onProgress(7,7);const poetic=createPoeticSpace(scene,camera,atlas);
  // All three-dimensional object geometry is authored in the editable Blender source.
  const instrument=new T.Group();instrument.name='Jinse_Instrument';scene.add(instrument);instrument.add(gltf.scene);let strings=[],bridges=[];
