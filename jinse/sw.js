@@ -1,12 +1,7 @@
-const RELEASE = 'jinse-original-motion-2026-11-04-r3';
-const VERSION = 'original-motion-2026-11-04-r3';
+const RELEASE = 'jinse-original-motion-2026-11-04-r4';
+const VERSION = 'original-motion-2026-11-04-r4';
 const BASE = new URL('./', self.location.href);
-const FILES = ['index.html', 'design-v6.css', 'stage-v6.js', 'scene-v6.js',
-  'cue-data.js', 'first-movement.js', 'asset-transport.js', 'dramaturgy-v7.js', 'poetic-space-v7.js', 'instrument-performance-v8.js',
-  'vendor/three.module.js', 'vendor/loaders/GLTFLoader.js', 'vendor/utils/BufferGeometryUtils.js',
-  'assets/jinse-v6.glb.gz', 'assets/landscape-v6-fast.webp', 'assets/dream-v6-fast.webp',
-  'assets/poet-v6-fast.webp', 'assets/wing-v4-fast.webp', 'assets/memories-v4-fast.webp',
-  'assets/fonts/MaShanZheng-report.woff2', 'assets/fonts/ZCOOLXiaoWei-report.woff2'];
+const FILES=['index.html','design-v6.css','stage-bundle-v4.js','assets/jinse-v6.glb.gz','assets/landscape-v6-fast.webp','assets/dream-v6-fast.webp','assets/poet-v6-fast.webp','assets/wing-v4-fast.webp','assets/memories-v4-fast.webp','assets/fonts/MaShanZheng-report.woff2','assets/fonts/ZCOOLXiaoWei-report.woff2'];
 self.addEventListener('install', event => event.waitUntil((async () => {
   const cache = await caches.open(RELEASE);
   const assets=await caches.open('jinse-complete-assets-v1');
