@@ -1,13 +1,13 @@
 {
-  "release": "mural-2026-11-04-r2",
+  "release": "mural-2026-11-04-r3",
   "renderer": "layered Canvas2D skeletal animation",
   "actual_cubism_rig": false,
-  "url": "https://bubbleapp.cn/jinse/mural/?v=mural-2026-11-04-r2",
+  "url": "https://bubbleapp.cn/jinse/mural/?v=mural-2026-11-04-r3",
   "files": [
     {
       "path": "index.html",
-      "bytes": 5562,
-      "sha256": "9f7db51d0976af3b9b0473a376de9764b2da33ccdd5cc4ba4025c347140fc755"
+      "bytes": 5927,
+      "sha256": "f582559895763d511e753837c3eb2c94eb698529ec0b834b6edd9f34135809fc"
     },
     {
       "path": "mural.css",
@@ -15,14 +15,14 @@
       "sha256": "7b3b0c192302c79d23ba33eb9a2ae8957bd9baade3d3ca412815cc1c6e0983f0"
     },
     {
-      "path": "mural-bundle-r2.js",
-      "bytes": 120042,
-      "sha256": "0fe43bc55410b8753d52282b241203fd6abaf26596c0ed9dc0cce03969fe455a"
+      "path": "mural-bundle-r3.js",
+      "bytes": 121046,
+      "sha256": "6c33ef5d7f9bd71b07a1b0da40b76b14776511294f8dd756fd1fd20f9e7feaae"
     },
     {
       "path": "sw.js",
       "bytes": 1462,
-      "sha256": "d979eb3568e0cb7a38abe1d68bc7d3524237b3e16bd900bcda835d906faffac8"
+      "sha256": "7b902d609d2a966502a8f14fce62e3b2e9956e45dd3714d4613e9cb47fef8776"
     },
     {
       "path": "art-manifest.json",
