@@ -1,7 +1,7 @@
 import * as T from 'three';
-import {CUES} from './cue-data.js?v=original-motion-2026-11-03-r4';
-import {createWorld,smooth} from './scene-v6.js?v=original-motion-2026-11-03-r4';
-import {dramaturgy,REPORT_CHAPTERS,GLOSSES} from './dramaturgy-v7.js?v=original-motion-2026-11-03-r4';
+import {CUES} from './cue-data.js?v=original-motion-2026-11-04-r1';
+import {createWorld,smooth} from './scene-v6.js?v=original-motion-2026-11-04-r1';
+import {dramaturgy,REPORT_CHAPTERS,GLOSSES} from './dramaturgy-v7.js?v=original-motion-2026-11-04-r1';
 const STAGING=dramaturgy(CUES);
 const $=s=>document.querySelector(s),canvas=$('#stage'),low=new URLSearchParams(location.search).has('low');
 

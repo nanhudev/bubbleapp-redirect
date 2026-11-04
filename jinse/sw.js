@@ -1,5 +1,5 @@
-const RELEASE = 'jinse-original-motion-2026-11-03-r4';
-const VERSION = 'original-motion-2026-11-03-r4';
+const RELEASE = 'jinse-original-motion-2026-11-04-r1';
+const VERSION = 'original-motion-2026-11-04-r1';
 const BASE = new URL('./', self.location.href);
 const FILES = ['index.html', 'design-v6.css', 'stage-v6.js', 'scene-v6.js',
   'cue-data.js', 'asset-transport.js', 'dramaturgy-v7.js', 'poetic-space-v7.js', 'instrument-performance-v8.js',
@@ -23,6 +23,10 @@ self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET' || url.origin !== BASE.origin || !url.pathname.startsWith(BASE.pathname)) return;
   event.respondWith((async () => {
     const cache = await caches.open(RELEASE);
+    // Prefer the current entry online so a repaired release is not hidden by cached HTML.
+    if (event.request.mode === 'navigate') {
+      try { const response = await fetch(event.request); if (response.ok) return response; } catch {}
+    }
     const hit = await cache.match(event.request, {ignoreSearch: true});
     if (hit) return hit;
     try { return await fetch(event.request); }

@@ -1,7 +1,7 @@
 import * as T from 'three';
-import {downloadAsset} from './asset-transport.js?v=original-motion-2026-11-03-r4';
-import {createPoeticSpace} from './poetic-space-v7.js?v=original-motion-2026-11-03-r4';
-import {instrumentPerformance} from './instrument-performance-v8.js?v=original-motion-2026-11-03-r4';
+import {downloadAsset} from './asset-transport.js?v=original-motion-2026-11-04-r1';
+import {createPoeticSpace} from './poetic-space-v7.js?v=original-motion-2026-11-04-r1';
+import {instrumentPerformance} from './instrument-performance-v8.js?v=original-motion-2026-11-04-r1';
 import {GLTFLoader} from './vendor/loaders/GLTFLoader.js';
 const clamp=T.MathUtils.clamp;
 export const smooth=t=>{t=clamp(t,0,1);return t*t*(3-2*t)};
