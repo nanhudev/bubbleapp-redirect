@@ -1,1 +1,60 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="jinse-release" content="original-motion-2026-11-04-r4"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preload" href="./assets/fonts/MaShanZheng-report.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="./assets/fonts/ZCOOLXiaoWei-report.woff2" as="font" type="font/woff2" crossorigin><link rel="modulepreload" href="./stage-bundle-v4.js?v=original-motion-2026-11-04-r4"><title>锦瑟 · 一弦一柱</title><link rel="icon" href="data:,"><link rel="stylesheet" href="./design-v6.css?v=original-motion-2026-11-04-r4"><script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script></head><body data-scene="1"><canvas id="stage" aria-label="锦瑟动画场景"></canvas><div id="paper-grain"></div><nav id="reportOutline" hidden aria-label="报告章节"></nav><div id="interactionHint" hidden></div><aside id="gloss" hidden aria-label="关键词释义"></aside><main id="words"><div id="eyebrow"></div><h1 id="title">锦瑟</h1><p id="subtitle">余宣均、刘嘉乐</p><div id="body"></div><div id="source"></div></main><div id="beginLayer"><button id="begin" disabled aria-live="polite" aria-busy="true"><span>正在展卷</span><i>→</i></button></div><nav id="studyControls" hidden><button id="pluckAction" hidden>拨弦</button><button id="structureAction" hidden>拆解</button><button id="nextLayer">展开下一层 →</button><button id="openStudy">原典 · 笺注</button></nav><article id="study" hidden aria-label="原典与完整论证"></article><aside id="notes" hidden></aside><div id="endControls" hidden><button id="restart">重新体验 <i>↗</i></button></div><section id="error" hidden><h2>画卷暂未载入</h2><p></p><button id="retry">重新载入</button><button id="recover">恢复画面</button></section><script type="module" src="./stage-bundle-v4.js?v=original-motion-2026-11-04-r4"></script><script>window.addEventListener("jinse-ready",()=>{if("serviceWorker" in navigator)navigator.serviceWorker.register("./sw.js").catch(()=>{});});</script></body></html>
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="jinse-release" content="original-motion-2026-11-04-r5"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preload" href="./assets/fonts/MaShanZheng-report.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="./assets/fonts/ZCOOLXiaoWei-report.woff2" as="font" type="font/woff2" crossorigin><link rel="modulepreload" href="./stage-bundle-v5.js?v=original-motion-2026-11-04-r5"><title>锦瑟 · 一弦一柱</title><link rel="icon" href="data:,"><link rel="stylesheet" href="./design-v6.css?v=original-motion-2026-11-04-r5"><script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script><script data-jinse-early>(()=>{
+// Bounded byte-range downloads keep the original payload intact on slow links.
+const jobs = [];
+let active = 0;
+function schedule(task) {
+  return new Promise((resolve, reject) => {
+    jobs.push({task, resolve, reject});
+    pump();
+  });
+}
+function pump() {
+  while (active < 8 && jobs.length) {
+    const job = jobs.shift();
+    active++;
+    Promise.resolve().then(job.task).then(job.resolve, job.reject).finally(() => {active--; pump();});
+  }
+}
+const part = (url, start, end) => schedule(async () => {
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      const response = await fetch(url, {signal:AbortSignal.timeout(12000),headers: {Range: `bytes=${start}-${end}`}});
+      if (!response.ok) throw new Error('资源下载失败');
+      return {status: response.status, bytes: new Uint8Array(await response.arrayBuffer())};
+    } catch (error) {
+      if (attempt === 2) throw error;
+      await new Promise(resolve => setTimeout(resolve, 300 * (attempt + 1)));
+    }
+  }
+});
+async function transferAsset(url, length) {
+  const size = 262144;
+  const first = await part(url, 0, Math.min(size, length) - 1);
+  if (first.status === 200) {
+    if (first.bytes.length !== length) throw new Error('资源未下载完整');
+    return first.bytes.buffer;
+  }
+  if (first.bytes.length !== Math.min(size, length)) throw new Error('资源分段不完整');
+  const output = new Uint8Array(length);
+  output.set(first.bytes);
+  await Promise.all(Array.from({length: Math.ceil(length / size) - 1}, async (_, index) => {
+    const start = (index + 1) * size, end = Math.min(start + size, length) - 1;
+    const result = await part(url, start, end);
+    const bytes = result.status === 200 && result.bytes.length === length ? result.bytes.slice(start, end + 1) : result.bytes;
+    if (bytes.length !== end - start + 1) throw new Error('资源分段不完整');
+    output.set(bytes, start);
+  }));
+  return output.buffer;
+}
+
+// Store the assembled file once; it can be reused by both the next launch and the offline worker.
+const ASSET_CACHE='jinse-complete-assets-v1';
+async function downloadAsset(url,length){
+ const key=new URL(url,location.href);key.searchParams.delete('retry');let cache;
+ try{cache=await caches.open(ASSET_CACHE);const hit=await cache.match(key.href);if(hit){const data=await hit.arrayBuffer();if(data.byteLength===length)return data;}}catch{}
+ const data=await transferAsset(url,length);
+ if(cache)try{await cache.put(key.href,new Response(data,{headers:{'Content-Length':String(length),'Content-Type':key.pathname.endsWith('.webp')?'image/webp':'application/octet-stream'}}));}catch{}
+ return data;
+}
+
+const tasks=window.__jinseAssetPreloads=new Map();for(const [url,length] of Object.entries({"./assets/poet-v6-fast.webp": 186818, "./assets/dream-v6-fast.webp": 106938, "./assets/wing-v4-fast.webp": 494522, "./assets/landscape-v6-fast.webp": 81072, "./assets/memories-v4-fast.webp": 508660, "./assets/jinse-v6.glb.gz": 539773})){const key=new URL(url,location.href).href;const promise=downloadAsset(url,length);tasks.set(key,promise);promise.catch(()=>tasks.delete(key));}})();</script></head><body data-scene="1"><canvas id="stage" aria-label="锦瑟动画场景"></canvas><div id="paper-grain"></div><nav id="reportOutline" hidden aria-label="报告章节"></nav><div id="interactionHint" hidden></div><aside id="gloss" hidden aria-label="关键词释义"></aside><main id="words"><div id="eyebrow"></div><h1 id="title">锦瑟</h1><p id="subtitle">余宣均、刘嘉乐</p><div id="body"></div><div id="source"></div></main><div id="beginLayer"><button id="begin" disabled aria-live="polite" aria-busy="true"><span>正在展卷</span><i>→</i></button></div><nav id="studyControls" hidden><button id="pluckAction" hidden>拨弦</button><button id="structureAction" hidden>拆解</button><button id="nextLayer">展开下一层 →</button><button id="openStudy">原典 · 笺注</button></nav><article id="study" hidden aria-label="原典与完整论证"></article><aside id="notes" hidden></aside><div id="endControls" hidden><button id="restart">重新体验 <i>↗</i></button></div><section id="error" hidden><h2>画卷暂未载入</h2><p></p><button id="retry">重新载入</button><button id="recover">恢复画面</button></section><script type="module" src="./stage-bundle-v5.js?v=original-motion-2026-11-04-r5"></script><script>window.addEventListener("jinse-ready",()=>{if("serviceWorker" in navigator)navigator.serviceWorker.register("./sw.js").catch(()=>{});});</script></body></html>

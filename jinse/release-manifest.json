@@ -1,5 +1,5 @@
 {
-  "release": "original-motion-2026-11-04-r4",
+  "release": "original-motion-2026-11-04-r5",
   "url": "https://bubbleapp.cn/jinse/",
   "files": [
     {
@@ -9,8 +9,8 @@
     },
     {
       "path": "asset-transport.js",
-      "bytes": 2648,
-      "sha256": "02f93620830516ca3b41ec406e9c15cf47f948b411c76559bb9acdda970930ca"
+      "bytes": 2731,
+      "sha256": "e4528192c7c233d1736ee71dac47a22aa9258065329f5737f1a76ac9baf259f5"
     },
     {
       "path": "assets/dream-v6-fast.webp",
@@ -89,8 +89,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 2138,
-      "sha256": "30c7d2410e6c7ac7cdeb8ce90ee2fbcf7ceff88b45933df10bcc76b65858cd7f"
+      "bytes": 5291,
+      "sha256": "07296a8187f345549634425a34873bb222872cab098af63b263a70e15f731ef0"
     },
     {
       "path": "instrument-performance-v8.js",
@@ -105,22 +105,22 @@
     {
       "path": "scene-v6.js",
       "bytes": 22635,
-      "sha256": "fa92840ae7fb2f566c05ea7e150d29bc051d0d53b4b5230db0bf8f2853b20548"
+      "sha256": "296ab20b3ad7ae75c7bcc4d4e6201714dfa4c47488bff4da071bb566a0aae7f7"
     },
     {
-      "path": "stage-bundle-v4.js",
-      "bytes": 744944,
-      "sha256": "54812f56f814a8bb2e39400368d95a393417b9cd224b91a26cd73d2dc846dc7a"
+      "path": "stage-bundle-v5.js",
+      "bytes": 745005,
+      "sha256": "bc8d6d167277450260889fc880462da8734044d8e5f339fffb92f2f1a239ac8e"
     },
     {
       "path": "stage-v6.js",
       "bytes": 22934,
-      "sha256": "8a00d2fe204c65faf205d93dbc226d5028ffe0cde95978accb72ba0feb79a0e4"
+      "sha256": "63f59a07f59cc1c3e362fa6bd6b333f8de26dd8ade40554069a47d65f0d70eb7"
     },
     {
       "path": "sw.js",
       "bytes": 2748,
-      "sha256": "945d5be6f76804f4a46918dd3852f06cc8648e272a562f868ea7cc33ce237ecf"
+      "sha256": "1308cdb352620b73fed37d7e8a0f2b14a64217feb053980f99db717479d01a07"
     },
     {
       "path": "vendor/THREE-LICENSE.txt",

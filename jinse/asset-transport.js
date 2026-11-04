@@ -27,7 +27,7 @@ const part = (url, start, end) => schedule(async () => {
   }
 });
 async function transferAsset(url, length) {
-  const size = 131072;
+  const size = 262144;
   const first = await part(url, 0, Math.min(size, length) - 1);
   if (first.status === 200) {
     if (first.bytes.length !== length) throw new Error('资源未下载完整');
@@ -49,7 +49,7 @@ async function transferAsset(url, length) {
 // Store the assembled file once; it can be reused by both the next launch and the offline worker.
 export const ASSET_CACHE='jinse-complete-assets-v1';
 export async function downloadAsset(url,length){
- const key=new URL(url,location.href);key.searchParams.delete('retry');let cache;
+ const key=new URL(url,location.href);key.searchParams.delete('retry');const pending=window.__jinseAssetPreloads?.get(key.href);if(pending)return pending;let cache;
  try{cache=await caches.open(ASSET_CACHE);const hit=await cache.match(key.href);if(hit){const data=await hit.arrayBuffer();if(data.byteLength===length)return data;}}catch{}
  const data=await transferAsset(url,length);
  if(cache)try{await cache.put(key.href,new Response(data,{headers:{'Content-Length':String(length),'Content-Type':key.pathname.endsWith('.webp')?'image/webp':'application/octet-stream'}}));}catch{}
