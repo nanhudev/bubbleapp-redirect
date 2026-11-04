@@ -1,0 +1,55 @@
+{
+  "assets": [
+    {
+      "name": "jade",
+      "size": [
+        1263,
+        1246
+      ],
+      "bytes": 571292
+    },
+    {
+      "name": "butterfly",
+      "size": [
+        1268,
+        1241
+      ],
+      "bytes": 359898
+    },
+    {
+      "name": "cuckoo",
+      "size": [
+        1263,
+        1246
+      ],
+      "bytes": 453980
+    },
+    {
+      "name": "background",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 571890
+    },
+    {
+      "name": "pearl",
+      "size": [
+        1278,
+        1230
+      ],
+      "bytes": 448680
+    },
+    {
+      "name": "instrument",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 262610
+    }
+  ],
+  "animation": "layered Canvas2D skeletal/deformation rig",
+  "actual_cubism_rig": false,
+  "source": "built-in image generation"
+}

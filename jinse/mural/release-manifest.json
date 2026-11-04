@@ -1,0 +1,73 @@
+{
+  "release": "mural-2026-11-04-r1",
+  "renderer": "layered Canvas2D skeletal animation",
+  "actual_cubism_rig": false,
+  "url": "https://bubbleapp.cn/jinse/mural/?v=mural-2026-11-04-r1",
+  "files": [
+    {
+      "path": "index.html",
+      "bytes": 2651,
+      "sha256": "92094a352941920a4f7f66d649288070b53df0672d95b150a370a1462d6df3b1"
+    },
+    {
+      "path": "mural.css",
+      "bytes": 7378,
+      "sha256": "a79584c2c23f717492ab2839359b5e36f8b95e886ed3c0bea1d1b8a1254554d5"
+    },
+    {
+      "path": "mural-bundle.js",
+      "bytes": 120042,
+      "sha256": "0fe43bc55410b8753d52282b241203fd6abaf26596c0ed9dc0cce03969fe455a"
+    },
+    {
+      "path": "sw.js",
+      "bytes": 1159,
+      "sha256": "19ace2ad9bbd9934b74f409fbe809c51678c4e4bfc0261b2e5be831230f7feb5"
+    },
+    {
+      "path": "art-manifest.json",
+      "bytes": 823,
+      "sha256": "74ee9b4dccdb0d079902593f612eb8d11d06d1e3c1b6006c639b50a5b3ef254b"
+    },
+    {
+      "path": "assets/background.webp",
+      "bytes": 571890,
+      "sha256": "de83b195b31e5fba2122a96801557d3cfd5f5d779b524bde6e6a5173f2a6e025"
+    },
+    {
+      "path": "assets/butterfly.webp",
+      "bytes": 359898,
+      "sha256": "31ffd27084a3368275e4122553bbb7ad0d555d68cee2d7b77208a3ab350c219e"
+    },
+    {
+      "path": "assets/cuckoo.webp",
+      "bytes": 453980,
+      "sha256": "a2bde84eb302a4e636fd8968303e47abbcd6028c06e907a1ea2eb2a4902182bc"
+    },
+    {
+      "path": "assets/jade.webp",
+      "bytes": 571292,
+      "sha256": "d2dc3278f057fae1cf6af13fe90f0fa39e6fe4fa5c3c85304cd6b04e0872fc21"
+    },
+    {
+      "path": "assets/pearl.webp",
+      "bytes": 448680,
+      "sha256": "b88023091e0bd3eb3cad474486b43430c46f0b40d51cb5f181733b3c70c75908"
+    },
+    {
+      "path": "assets/instrument.webp",
+      "bytes": 262610,
+      "sha256": "74a1deef1bbbf791d2fc71b3bf0092d0bbc9d80115bfaeb37f6f784191e7db17"
+    },
+    {
+      "path": "assets/biography.webp",
+      "bytes": 508660,
+      "sha256": "f99b96efbce38241d856b72da7c31ac9a71f1fdef4dac4ca19b15c7041554b0b"
+    },
+    {
+      "path": "LICENSES.md",
+      "bytes": 862,
+      "sha256": "a1f7206d467011aad244d2d9ab5e4237c331df21fcb823de79b30974c76d0b5d"
+    }
+  ]
+}
