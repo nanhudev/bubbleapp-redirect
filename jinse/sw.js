@@ -1,8 +1,8 @@
-const RELEASE = 'jinse-original-motion-2026-11-04-r1';
-const VERSION = 'original-motion-2026-11-04-r1';
+const RELEASE = 'jinse-original-motion-2026-11-04-r2';
+const VERSION = 'original-motion-2026-11-04-r2';
 const BASE = new URL('./', self.location.href);
 const FILES = ['index.html', 'design-v6.css', 'stage-v6.js', 'scene-v6.js',
-  'cue-data.js', 'asset-transport.js', 'dramaturgy-v7.js', 'poetic-space-v7.js', 'instrument-performance-v8.js',
+  'cue-data.js', 'first-movement.js', 'asset-transport.js', 'dramaturgy-v7.js', 'poetic-space-v7.js', 'instrument-performance-v8.js',
   'vendor/three.module.js', 'vendor/loaders/GLTFLoader.js', 'vendor/utils/BufferGeometryUtils.js',
   'assets/jinse-v6.glb.gz', 'assets/landscape-v6.webp', 'assets/dream-v6.webp',
   'assets/poet-v6.webp', 'assets/wing-v4.webp', 'assets/memories-v4.webp',
@@ -17,6 +17,11 @@ self.addEventListener('activate', event => event.waitUntil((async () => {
     if (key.startsWith('jinse-original-motion-') && key !== RELEASE) await caches.delete(key);
   }
   await self.clients.claim();
+  // Upgrade already-open, cached presentation entries after the worker changes.
+  for(const client of await self.clients.matchAll({type:'window'})){
+    const url=new URL(client.url);
+    if(url.origin===BASE.origin&&(url.pathname===BASE.pathname||url.pathname===BASE.pathname+'index.html')&&url.searchParams.get('v')!==VERSION){url.searchParams.set('v',VERSION);void client.navigate(url.href).catch(()=>{});}
+  }
 })()));
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
@@ -27,7 +32,7 @@ self.addEventListener('fetch', event => {
     if (event.request.mode === 'navigate') {
       try { const response = await fetch(event.request); if (response.ok) return response; } catch {}
     }
-    const hit = await cache.match(event.request, {ignoreSearch: true});
+    const hit = await cache.match(event.request, {ignoreSearch: !url.searchParams.has('v')});
     if (hit) return hit;
     try { return await fetch(event.request); }
     catch (error) {

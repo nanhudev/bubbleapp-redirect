@@ -1,11 +1,11 @@
-const POEMS=['','锦瑟无端五十弦','五十弦','五十弦','悲声不可止','无端','一弦一柱思华年','一弦一柱思华年','一弦一柱思华年','一弦一柱思华年','一弦一柱思华年','思华年','无端','庄生晓梦迷蝴蝶','庄生晓梦迷蝴蝶','晓梦迷蝴蝶','迷与托','锦瑟','望帝春心托杜鹃','庄生与望帝','沧海月明珠有泪','蓝田日暖玉生烟','只是当时已惘然','思华年与此情','独恨无人作郑笺','此情可待成追忆','一弦一柱','此情','迷托有生','当时已惘然','笺注','一弦一柱思华年'];
-const TERMS=['','兴','弦','实与虚','悲','无端','思','受知','登第','入幕','行旅','华年','问','迷','物化','晓梦','托','全篇','春心','变与不变','泪','烟','已','此情','郑笺','可待','声律','悼亡','对仗','惘然','原典','重读'];
+const POEMS=['','锦瑟无端五十弦','五十弦','一弦一柱','悲声不可止','无端','一弦一柱思华年','一弦一柱思华年','一弦一柱思华年','一弦一柱思华年','一弦一柱思华年','思华年','无端','庄生晓梦迷蝴蝶','庄生晓梦迷蝴蝶','晓梦迷蝴蝶','迷与托','锦瑟','望帝春心托杜鹃','庄生与望帝','沧海月明珠有泪','蓝田日暖玉生烟','只是当时已惘然','思华年与此情','独恨无人作郑笺','此情可待成追忆','一弦一柱','此情','迷托有生','当时已惘然','笺注','一弦一柱思华年'];
+const TERMS=['','兴','弦','声的形状','悲','无端','思','受知','登第','入幕','行旅','华年','问','迷','物化','晓梦','托','全篇','春心','变与不变','泪','烟','已','此情','郑笺','可待','声律','悼亡','对仗','惘然','原典','重读'];
 const THEMES=['instrument','instrument','instrument','instrument','instrument','instrument','scroll','scroll','scroll','scroll','scroll','scroll','void','dream','dream','dream','dream','instrument','birds','dream','sea','jade','void','instrument','scroll','instrument','instrument','scroll','instrument','dream','scroll','dream'];
 export function dramaturgy(cues){return cues.map((c,i)=>{const el=document.createElement('div');el.innerHTML=c.body||'';const sections=[...el.querySelectorAll('section')];const lead=el.querySelector('.argument')?.outerHTML||'';let parts=sections.length?sections.map(s=>({heading:s.querySelector('h2')?.textContent||c.title,html:lead+s.outerHTML})):[{heading:c.title,html:c.body||''}];
  if(i>=7&&i<=10)parts=[{heading:c.title,html:'<p class="scroll-fact">'+['令狐楚赏识其文，并授以章奏。','开成二年（837），登进士第。','王茂元聘入幕府，并以女妻之。','在不同幕府与官职之间辗转。'][i-7]+'</p>'+(sections.at(-1)?.outerHTML||'')}];
  if(i===1)parts=[{heading:'声起，字生',html:'<p class="argument">声声入耳，弦弦牵动华年。</p><section><p>“五十弦”先铺开繁声，“一弦一柱”再将它逐一收拢。“思”落在句末，器物的秩序由此化为追忆的节奏。</p><p>从声音抵达记忆，是首联的兴发力量。每一次触弦，都让曾经的年华重新获得形状。</p></section>'},{heading:'弦、柱与共鸣',source:'原诗 S7',html:'<p class="argument">弦列展开，声音的结构显现。</p><section><p>弦振动，柱支承，瑟体与声音相应。“一弦一柱”既有器物的具体感，也有节奏的反复感。</p><p>当“思华年”接在它们之后，外物的每一次微动，便成为内心的一次触发。</p></section>'},...parts];
  if(i===17)parts=[{heading:'八句，同一场追忆',html:el.querySelector('.poem-full').outerHTML}];
- return {poem:i===0?'':POEMS[i]||c.title,term:i===0||(i>=7&&i<=10)?'':TERMS[i]||'思',theme:THEMES[i]||'dream',parts,lead,scroll:i>=6&&i<=11};});}
+ return {poem:i===0?'':POEMS[i]||c.title,term:i===0||i===3||(i>=7&&i<=10)?'':TERMS[i]||'思',theme:THEMES[i]||'dream',parts,lead,scroll:i>=6&&i<=11};});}
 export const REPORT_CHAPTERS=[{name:'器物与问题',start:0,go:1},{name:'身世与华年',start:6,go:6},{name:'典故与意象',start:13,go:13},{name:'章法与阐释',start:23,go:23},{name:'结论与讨论',start:29,go:29}];
 export const GLOSSES={
  '兴':'由物触情，由声入忆。锦瑟的声响引出“思华年”，使眼前器物成为深切追忆的入口。',
