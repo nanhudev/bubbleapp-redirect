@@ -2,3 +2,4 @@
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 
 #poem{min-height:1.25em}header:before{content:'';position:fixed;inset:0 0 auto;height:90px;background:linear-gradient(#eadbb7ce,#eadbb700);z-index:-1;pointer-events:none}.reading{color:#f0d8a4;text-shadow:0 1px 2px #27434d}body[data-scene=scroll] .reading{color:#473e2e;text-shadow:none}
+@media(min-width:1001px){#body{font-size:clamp(19px,1.3vw,25px)}#body .argument{font-size:clamp(21px,1.5vw,29px)}#heading{font-size:clamp(24px,1.8vw,32px)}#body .poem-full{font-size:clamp(24px,1.6vw,30px)}}
