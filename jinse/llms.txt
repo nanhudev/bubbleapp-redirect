@@ -1,12 +1,9 @@
-# 锦瑟 · 华年入画
+# 锦瑟 · 一弦一柱
 
-公开的文学课交互报告，无需登录。
+Canva前原网页演示，保持原三维运镜及互动，接入新美术。无需登录。
 
-- 网页入口: https://bubbleapp.cn/jinse/
-- 完整互动演示及离线 HTML 下载: https://bubbleapp.cn/jinse/mural/present.html
-- 资源清单（含 SHA-256 和字节长度）: https://bubbleapp.cn/jinse/agent-manifest.json
-- 静态效果图: https://bubbleapp.cn/jinse/preview/overview.jpg
-- 实际动画录帧: https://bubbleapp.cn/jinse/preview/motion.webp
-- 人生画卷效果图: https://bubbleapp.cn/jinse/preview/scroll.jpg
-
-预览是标准 HTML 和图片，无需 JavaScript。完整互动演示需要支持 Canvas2D 的浏览器；打开后点击“入画”。下载 HTML 后可以完全离线使用。
+- 完整演示及离线HTML下载: https://bubbleapp.cn/jinse/restored/present.html
+- 资源清单: https://bubbleapp.cn/jinse/agent-manifest.json
+- 实际画面: https://bubbleapp.cn/jinse/preview/pre-canva-opening.jpg
+- 实际运行预览: https://bubbleapp.cn/jinse/preview/pre-canva-motion.webm
+- 更新材质的原三维模型: https://bubbleapp.cn/jinse/restored/instrument-new-art.glb

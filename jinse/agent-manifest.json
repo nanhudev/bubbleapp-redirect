@@ -1,21 +1,24 @@
 {
-  "name": "锦瑟 · 华年入画",
-  "version": "agent-access-2026-11-04",
+  "name": "锦瑟 · 一弦一柱",
+  "version": "pre-canva-new-art-2026-11-04",
+  "historicalBaseline": "performance-2026-11-02-r2",
+  "historicalCommit": "a33d461",
   "url": "https://bubbleapp.cn/jinse/",
   "presentation": {
-    "url": "https://bubbleapp.cn/jinse/mural/present.html",
-    "download_url": "https://bubbleapp.cn/jinse/mural/present.html",
-    "suggested_filename": "锦瑟-华年入画-完整离线演示.html",
+    "url": "https://bubbleapp.cn/jinse/restored/present.html",
+    "download_url": "https://bubbleapp.cn/jinse/restored/present.html",
+    "suggested_filename": "锦瑟-Canva前原版动效-新美术.html",
     "mime_type": "text/html; charset=utf-8",
-    "bytes": 5504999,
-    "sha256": "9a04c98fe8a2159d7bb74a89ab603d6e534c15b83f2afcdd093ddba88538bda5",
+    "bytes": 8879929,
+    "sha256": "79ad4de40ae9294d13a596be5de085d12bbb07216fea6995be74bba9fcb8f27f",
     "self_contained": true,
     "offline": true
   },
+  "model": "https://bubbleapp.cn/jinse/restored/instrument-new-art.glb",
   "preview": {
-    "image": "https://bubbleapp.cn/jinse/preview/overview.jpg",
-    "animation": "https://bubbleapp.cn/jinse/preview/motion.webp",
-    "scroll": "https://bubbleapp.cn/jinse/preview/scroll.jpg"
+    "image": "https://bubbleapp.cn/jinse/preview/pre-canva-opening.jpg",
+    "animation": "https://bubbleapp.cn/jinse/preview/pre-canva-motion.webm",
+    "scroll": "https://bubbleapp.cn/jinse/preview/pre-canva-scroll.jpg"
   },
   "access": {
     "authentication": false,
@@ -23,16 +26,16 @@
     "javascript_required_for_interactive": true
   },
   "controls": {
-    "start": "入画",
+    "start": "开始演示",
     "next": "Space / ArrowRight",
     "previous": "ArrowLeft",
     "pluck": "P",
-    "split_strings": "E",
+    "assembly": "E on cue 1",
     "notes": "H",
     "sources": "J",
     "fullscreen": "F"
   },
   "report_topics": 32,
   "analysis_layers": 28,
-  "renderer": "Canvas2D layered puppet animation"
+  "renderer": "Three.js original perspective scene and spatial text motion; new painted art and model material"
 }
