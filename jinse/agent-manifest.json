@@ -1,0 +1,38 @@
+{
+  "name": "锦瑟 · 华年入画",
+  "version": "agent-access-2026-11-04",
+  "url": "https://bubbleapp.cn/jinse/",
+  "presentation": {
+    "url": "https://bubbleapp.cn/jinse/mural/present.html",
+    "download_url": "https://bubbleapp.cn/jinse/mural/present.html",
+    "suggested_filename": "锦瑟-华年入画-完整离线演示.html",
+    "mime_type": "text/html; charset=utf-8",
+    "bytes": 5504999,
+    "sha256": "9a04c98fe8a2159d7bb74a89ab603d6e534c15b83f2afcdd093ddba88538bda5",
+    "self_contained": true,
+    "offline": true
+  },
+  "preview": {
+    "image": "https://bubbleapp.cn/jinse/preview/overview.jpg",
+    "animation": "https://bubbleapp.cn/jinse/preview/motion.webp",
+    "scroll": "https://bubbleapp.cn/jinse/preview/scroll.jpg"
+  },
+  "access": {
+    "authentication": false,
+    "javascript_required_for_preview": false,
+    "javascript_required_for_interactive": true
+  },
+  "controls": {
+    "start": "入画",
+    "next": "Space / ArrowRight",
+    "previous": "ArrowLeft",
+    "pluck": "P",
+    "split_strings": "E",
+    "notes": "H",
+    "sources": "J",
+    "fullscreen": "F"
+  },
+  "report_topics": 32,
+  "analysis_layers": 28,
+  "renderer": "Canvas2D layered puppet animation"
+}
