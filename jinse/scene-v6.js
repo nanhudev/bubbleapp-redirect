@@ -1,14 +1,14 @@
 import * as T from 'three';
-import {downloadAsset} from './asset-transport.js?v=original-motion-2026-11-04-r2';
-import {createPoeticSpace} from './poetic-space-v7.js?v=original-motion-2026-11-04-r2';
-import {createFirstMovement} from './first-movement.js?v=original-motion-2026-11-04-r2';
-import {instrumentPerformance} from './instrument-performance-v8.js?v=original-motion-2026-11-04-r2';
+import {downloadAsset} from './asset-transport.js?v=original-motion-2026-11-04-r3';
+import {createPoeticSpace} from './poetic-space-v7.js?v=original-motion-2026-11-04-r3';
+import {createFirstMovement} from './first-movement.js?v=original-motion-2026-11-04-r3';
+import {instrumentPerformance} from './instrument-performance-v8.js?v=original-motion-2026-11-04-r3';
 import {GLTFLoader} from './vendor/loaders/GLTFLoader.js';
 const clamp=T.MathUtils.clamp;
 export const smooth=t=>{t=clamp(t,0,1);return t*t*(3-2*t)};
 const V=a=>new T.Vector3(...a);
 const texLoader=new T.TextureLoader();
-const byteSizes={"./assets/landscape-v6.webp": 1227348, "./assets/poet-v6.webp": 1343998, "./assets/wing-v4.webp": 1749608, "./assets/dream-v6.webp": 1351826, "./assets/memories-v4.webp": 2333764};
+const byteSizes={"./assets/poet-v6-fast.webp": 186818, "./assets/dream-v6-fast.webp": 106938, "./assets/wing-v4-fast.webp": 494522, "./assets/landscape-v6-fast.webp": 81072, "./assets/memories-v4-fast.webp": 508660};
 async function retryAsset(task,name){for(let attempt=0;attempt<3;attempt++){try{return await task(attempt)}catch(error){if(attempt===2)throw new Error(name+' 未能下载，请重试');await new Promise(resolve=>setTimeout(resolve,500*(attempt+1)))}}}
 const texture=async url=>{const data=await retryAsset(attempt=>downloadAsset(url+(attempt?'?retry='+attempt:''),byteSizes[url]),url.split('/').pop());const local=URL.createObjectURL(new Blob([data],{type:'image/webp'}));try{let t=await texLoader.loadAsync(local);t.colorSpace=T.SRGBColorSpace;return t}finally{URL.revokeObjectURL(local)}};
 function mesh(parent,geometry,material,position=[0,0,0]){let m=new T.Mesh(geometry,material);m.position.fromArray(position);parent.add(m);return m}
@@ -53,7 +53,7 @@ export async function createWorld(canvas,{low=false,onProgress=()=>{}}={}){
  const loadModel=()=>retryAsset(async attempt=>{if(!('DecompressionStream' in window))return new GLTFLoader().loadAsync('./assets/jinse-v6.glb');const compressed=await downloadAsset('./assets/jinse-v6.glb.gz'+(attempt?'?retry='+attempt:''),539773);const data=await new Response(new Blob([compressed]).stream().pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();return new GLTFLoader().parseAsync(data,new URL('./assets/',location.href).href)},'锦瑟模型');
  let loadedAssets=0;const track=promise=>promise.then(asset=>{onProgress(++loadedAssets,7);return asset});
  const [gltf,landscape,dream,portrait,wing,atlas]=await Promise.all([
-  loadModel(),texture('./assets/landscape-v6.webp'),optional('./assets/dream-v6.webp','./assets/landscape-v6.webp'),texture('./assets/poet-v6.webp'),texture('./assets/wing-v4.webp'),optional('./assets/memories-v4.webp','./assets/landscape-v6.webp')].map(track));
+  loadModel(),texture('./assets/landscape-v6-fast.webp'),optional('./assets/dream-v6-fast.webp','./assets/landscape-v6-fast.webp'),texture('./assets/poet-v6-fast.webp'),texture('./assets/wing-v4-fast.webp'),optional('./assets/memories-v4-fast.webp','./assets/landscape-v6-fast.webp')].map(track));
  await document.fonts.ready;onProgress(7,7);const poetic=createPoeticSpace(scene,camera,atlas);
  // All three-dimensional object geometry is authored in the editable Blender source.
  const instrument=new T.Group();instrument.name='Jinse_Instrument';scene.add(instrument);instrument.add(gltf.scene);let strings=[],bridges=[];

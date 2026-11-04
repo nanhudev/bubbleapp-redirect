@@ -1,15 +1,21 @@
-const RELEASE = 'jinse-original-motion-2026-11-04-r2';
-const VERSION = 'original-motion-2026-11-04-r2';
+const RELEASE = 'jinse-original-motion-2026-11-04-r3';
+const VERSION = 'original-motion-2026-11-04-r3';
 const BASE = new URL('./', self.location.href);
 const FILES = ['index.html', 'design-v6.css', 'stage-v6.js', 'scene-v6.js',
   'cue-data.js', 'first-movement.js', 'asset-transport.js', 'dramaturgy-v7.js', 'poetic-space-v7.js', 'instrument-performance-v8.js',
   'vendor/three.module.js', 'vendor/loaders/GLTFLoader.js', 'vendor/utils/BufferGeometryUtils.js',
-  'assets/jinse-v6.glb.gz', 'assets/landscape-v6.webp', 'assets/dream-v6.webp',
-  'assets/poet-v6.webp', 'assets/wing-v4.webp', 'assets/memories-v4.webp',
+  'assets/jinse-v6.glb.gz', 'assets/landscape-v6-fast.webp', 'assets/dream-v6-fast.webp',
+  'assets/poet-v6-fast.webp', 'assets/wing-v4-fast.webp', 'assets/memories-v4-fast.webp',
   'assets/fonts/MaShanZheng-report.woff2', 'assets/fonts/ZCOOLXiaoWei-report.woff2'];
 self.addEventListener('install', event => event.waitUntil((async () => {
   const cache = await caches.open(RELEASE);
-  await cache.addAll(FILES.map(name => {const url=new URL(name,BASE);if(!name.includes('/')&&(name.endsWith('.js')||name.endsWith('.css')))url.searchParams.set('v',VERSION);return new Request(url,{cache:name==='index.html'?'reload':'force-cache'})}));
+  const assets=await caches.open('jinse-complete-assets-v1');
+  await Promise.all(FILES.map(async name=>{
+    const url=new URL(name,BASE);if(!name.includes('/')&&(name.endsWith('.js')||name.endsWith('.css')))url.searchParams.set('v',VERSION);
+    const completed=name.startsWith('assets/')?await assets.match(url.href):null;
+    const response=completed||await fetch(new Request(url,{cache:name==='index.html'?'reload':'force-cache'}));
+    if(!response.ok)throw new Error('Resource unavailable: '+name);await cache.put(url.href,response);
+  }));
   await self.skipWaiting();
 })()));
 self.addEventListener('activate', event => event.waitUntil((async () => {

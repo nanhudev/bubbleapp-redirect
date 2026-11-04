@@ -1,5 +1,5 @@
 {
-  "release": "original-motion-2026-11-04-r2",
+  "release": "original-motion-2026-11-04-r3",
   "url": "https://bubbleapp.cn/jinse/",
   "files": [
     {
@@ -9,13 +9,13 @@
     },
     {
       "path": "asset-transport.js",
-      "bytes": 1905,
-      "sha256": "f2569889500267bcdf379fc712ccd271565909cebcec5789c02dc1fca2fa215d"
+      "bytes": 2648,
+      "sha256": "02f93620830516ca3b41ec406e9c15cf47f948b411c76559bb9acdda970930ca"
     },
     {
-      "path": "assets/dream-v6.webp",
-      "bytes": 1351826,
-      "sha256": "61c5f4370bdd015f519ff2fcbfc4a3d4b26e785643152cdbb560d2c574c645e7"
+      "path": "assets/dream-v6-fast.webp",
+      "bytes": 106938,
+      "sha256": "f250c0162c8d537021457c419bdb8784666fe5ae6ba88d4c3c259eb7442dfefc"
     },
     {
       "path": "assets/fonts/MaShanZheng-OFL.txt",
@@ -48,24 +48,24 @@
       "sha256": "3a04a9dbd15bf9b6a7652a80faa55b2f0f90924bab672870467a9abbdb86ec0e"
     },
     {
-      "path": "assets/landscape-v6.webp",
-      "bytes": 1227348,
-      "sha256": "92bd8c4c28d555f84f17b4958a2b753d72a567fde2ccc994590d1fd4ae9e1e21"
+      "path": "assets/landscape-v6-fast.webp",
+      "bytes": 81072,
+      "sha256": "81303270f76f3865d6eef18a81320b48e9f8b559887422f5cc5234250f24a361"
     },
     {
-      "path": "assets/memories-v4.webp",
-      "bytes": 2333764,
-      "sha256": "043d5e5ec7fde5b183e45e960cff2e5b605dcad704c355dd3941beaf6946ded3"
+      "path": "assets/memories-v4-fast.webp",
+      "bytes": 508660,
+      "sha256": "f99b96efbce38241d856b72da7c31ac9a71f1fdef4dac4ca19b15c7041554b0b"
     },
     {
-      "path": "assets/poet-v6.webp",
-      "bytes": 1343998,
-      "sha256": "a125117ec3afa37d491f1700220448a99209c8b4065bc4d879dae96633e259d8"
+      "path": "assets/poet-v6-fast.webp",
+      "bytes": 186818,
+      "sha256": "0977a8b05335e0545dcdc7eb94bbb6439dccfdb609adc388ec5b6e896ea84327"
     },
     {
-      "path": "assets/wing-v4.webp",
-      "bytes": 1749608,
-      "sha256": "49a10704dc2a50d855d07bfa43a6ef37f57bca82e7907e205b1f583b3715cef5"
+      "path": "assets/wing-v4-fast.webp",
+      "bytes": 494522,
+      "sha256": "07212b4c6633981c0ede3a18b87578329acdeb32ec8832a7632ea5288e31e2a5"
     },
     {
       "path": "cue-data.js",
@@ -90,7 +90,7 @@
     {
       "path": "index.html",
       "bytes": 2045,
-      "sha256": "34a6dfe49dd349f07e97628963224d207b2a1a36a1b26fa485cf87082f40f4af"
+      "sha256": "2fe0515a2aef412cc91276417790d8cbd8374fbec37da0d2ea3c18a722385f73"
     },
     {
       "path": "instrument-performance-v8.js",
@@ -104,18 +104,18 @@
     },
     {
       "path": "scene-v6.js",
-      "bytes": 22581,
-      "sha256": "f73e0c004c6ff76c08c667b5de9b52041b107ed843c92706bd941b7c1af074f9"
+      "bytes": 22635,
+      "sha256": "0397601a07e39d863ea7d4af114a2ab043d67fa4c38b86f44ada14719642d15e"
     },
     {
       "path": "stage-v6.js",
       "bytes": 22934,
-      "sha256": "cfebc71e9fb9fa9b0a8df7ce8cd458ce6ea870e2d2b2ff6d7e7514fd7903204d"
+      "sha256": "4d4c052f19de83722544d004df2f3749d65574983d7c1c46e390a44cf3041e93"
     },
     {
       "path": "sw.js",
-      "bytes": 2686,
-      "sha256": "777582152863f3efc79d206b3752fc69ffaf3418c55806791cfc82766d390aeb"
+      "bytes": 3007,
+      "sha256": "6042071b395dbbd5688d0bc7687dd535223a5446b56c48134cdffe7c10c88f04"
     },
     {
       "path": "vendor/THREE-LICENSE.txt",

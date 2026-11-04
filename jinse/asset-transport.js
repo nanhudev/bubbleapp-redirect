@@ -17,7 +17,7 @@ function pump() {
 const part = (url, start, end) => schedule(async () => {
   for (let attempt = 0; attempt < 3; attempt++) {
     try {
-      const response = await fetch(url, {headers: {Range: `bytes=${start}-${end}`}});
+      const response = await fetch(url, {signal:AbortSignal.timeout(12000),headers: {Range: `bytes=${start}-${end}`}});
       if (!response.ok) throw new Error('资源下载失败');
       return {status: response.status, bytes: new Uint8Array(await response.arrayBuffer())};
     } catch (error) {
@@ -26,7 +26,7 @@ const part = (url, start, end) => schedule(async () => {
     }
   }
 });
-export async function downloadAsset(url, length) {
+async function transferAsset(url, length) {
   const size = 131072;
   const first = await part(url, 0, Math.min(size, length) - 1);
   if (first.status === 200) {
@@ -44,4 +44,14 @@ export async function downloadAsset(url, length) {
     output.set(bytes, start);
   }));
   return output.buffer;
+}
+
+// Store the assembled file once; it can be reused by both the next launch and the offline worker.
+export const ASSET_CACHE='jinse-complete-assets-v1';
+export async function downloadAsset(url,length){
+ const key=new URL(url,location.href);key.searchParams.delete('retry');let cache;
+ try{cache=await caches.open(ASSET_CACHE);const hit=await cache.match(key.href);if(hit){const data=await hit.arrayBuffer();if(data.byteLength===length)return data;}}catch{}
+ const data=await transferAsset(url,length);
+ if(cache)try{await cache.put(key.href,new Response(data,{headers:{'Content-Length':String(length),'Content-Type':key.pathname.endsWith('.webp')?'image/webp':'application/octet-stream'}}));}catch{}
+ return data;
 }
