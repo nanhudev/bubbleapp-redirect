@@ -1,22 +1,22 @@
 {
   "name": "锦瑟 · 一弦一柱",
-  "version": "pre-canva-new-art-2026-11-04",
+  "version": "biography-first-2026-11-05",
   "historicalBaseline": "performance-2026-11-02-r2",
   "historicalCommit": "a33d461",
   "url": "https://bubbleapp.cn/jinse/",
   "presentation": {
-    "url": "https://bubbleapp.cn/jinse/restored/present.html",
-    "download_url": "https://bubbleapp.cn/jinse/restored/present.html",
+    "url": "https://bubbleapp.cn/jinse/restored/present.html?v=biography-first-2026-11-05",
+    "download_url": "https://bubbleapp.cn/jinse/restored/present.html?v=biography-first-2026-11-05",
     "suggested_filename": "锦瑟-Canva前原版动效-新美术.html",
     "mime_type": "text/html; charset=utf-8",
-    "bytes": 8879929,
-    "sha256": "79ad4de40ae9294d13a596be5de085d12bbb07216fea6995be74bba9fcb8f27f",
+    "bytes": 8109101,
+    "sha256": "9d2a817fd0620580b09eafb428d58fe4221b013873758704d34be08bd9826885",
     "self_contained": true,
     "offline": true
   },
   "model": "https://bubbleapp.cn/jinse/restored/instrument-new-art.glb",
   "preview": {
-    "image": "https://bubbleapp.cn/jinse/preview/pre-canva-opening.jpg",
+    "image": "https://bubbleapp.cn/jinse/preview/biography-first-opening.jpg",
     "animation": "https://bubbleapp.cn/jinse/preview/pre-canva-motion.webm",
     "scroll": "https://bubbleapp.cn/jinse/preview/pre-canva-scroll.jpg"
   },
