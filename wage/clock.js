@@ -3,7 +3,9 @@ const endpoints = [
   'https://67495dde3b39c2991829589f0101ab7a035eecf5.nict.go.jp/cgi-bin/json',
   'https://08a08e3a6edef4ba7a0c055a42d8e1ba2597f2b5.nict.go.jp/cgi-bin/json',
 ];
-const maxSampleAge = 10 * 60_000;
+const syncInterval = 15 * 60_000;
+const maxSampleAge = 30 * 60_000;
+const retryInterval = 60_000;
 
 async function readServerTime(endpoint, nonce) {
   const controller = new AbortController();
@@ -29,7 +31,7 @@ async function readServerTime(endpoint, nonce) {
     return {
       timestamp: st * 1000,
       midpoint: (started + received) / 2,
-      roundTrip: received - started,
+      wallOffset: Date.now() - performance.now(),
     };
   } finally {
     clearTimeout(timeout);
@@ -39,11 +41,20 @@ async function readServerTime(endpoint, nonce) {
 export function createClock() {
   let reference;
   let pending;
+  let lastAttempt = -Infinity;
+  let preferredEndpoint = endpoints[0];
   let source = '正在连接官方授时';
 
+  function sampleAge() {
+    if (!reference) return Infinity;
+    const monotonic = performance.now();
+    // Some devices pause the monotonic clock during sleep. Wall time only detects that jump.
+    if (Math.abs(Date.now() - monotonic - reference.wallOffset) > 2000) return Infinity;
+    return monotonic - reference.midpoint;
+  }
+
   function now() {
-    if (!reference) return null;
-    const elapsed = performance.now() - reference.midpoint;
+    const elapsed = sampleAge();
     if (elapsed > maxSampleAge) return null;
 
     // All clients use the same UTC-second boundaries, displayed in Beijing time.
@@ -53,19 +64,16 @@ export function createClock() {
 
   async function calibrate() {
     const nonce = Math.random().toString(36).slice(2);
-    try {
-      const { endpoint, sample } = await Promise.any(endpoints.map(async endpoint => ({
-        endpoint,
-        sample: await readServerTime(endpoint, nonce),
-      })));
+    const backup = endpoints.find(endpoint => endpoint !== preferredEndpoint);
+    for (const endpoint of [preferredEndpoint, backup]) {
+      const sample = await readServerTime(endpoint, nonce).catch(() => null);
+      if (!sample) continue;
       reference = sample;
-      // A second request can reuse the HTTPS connection and exclude setup latency.
-      const warmed = await readServerTime(endpoint, nonce + '-warm').catch(() => null);
-      if (warmed && warmed.roundTrip < sample.roundTrip) reference = warmed;
+      preferredEndpoint = endpoint;
       source = '已同步 · NICT 官方授时';
-    } catch {
-      source = '暂未连上官方授时';
+      return;
     }
+    source = now() ? '暂用上次官方校时' : '暂未连上官方授时';
   }
 
   return {
@@ -75,7 +83,13 @@ export function createClock() {
       return source;
     },
     sync() {
-      pending ??= calibrate().finally(() => { pending = undefined; });
+      if (pending) return pending;
+      const monotonic = performance.now();
+      if (sampleAge() < syncInterval || monotonic - lastAttempt < retryInterval) {
+        return Promise.resolve();
+      }
+      lastAttempt = monotonic;
+      pending = calibrate().finally(() => { pending = undefined; });
       return pending;
     },
   };

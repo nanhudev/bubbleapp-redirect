@@ -50,7 +50,7 @@
   </main>
   <script type="module">
     import { calculateWage } from './wage.js?v=2';
-    import { createClock } from './clock.js?v=3';
+    import { createClock } from './clock.js?v=4';
 
     const clock = createClock();
 
@@ -123,10 +123,7 @@
     }, 100);
     setInterval(() => {
       if (!document.hidden) syncAndRender();
-    }, 300_000);
-    setInterval(() => {
-      if (!document.hidden && !clock.now()) syncAndRender();
-    }, 15_000);
+    }, 60_000);
     document.addEventListener('visibilitychange', resume);
     window.addEventListener('pageshow', event => {
       if (event.persisted) resume();
