@@ -45,13 +45,16 @@
       <div><dt>每日折算</dt><dd id="daily"></dd></div>
       <div><dt>每小时</dt><dd id="hourly"></dd></div>
     </dl>
-    <footer>北京时间 · <span id="workdays"></span>，按周一至周五均摊。午休计入工时，节假日和调休按普通星期计算。</footer>
+    <footer>北京时间 · <span id="clock-status">正在校时</span><br><span id="workdays"></span>，按周一至周五均摊。午休计入工时，节假日和调休按普通星期计算。</footer>
     <noscript>开启 JavaScript 即可查看实时金额。</noscript>
   </main>
   <script type="module">
-    import { calculateWage } from './wage.js';
+    import { calculateWage } from './wage.js?v=2';
+    import { createClock } from './clock.js?v=2';
 
-    const ids = ['today', 'status', 'progress', 'month-total', 'daily', 'hourly', 'workdays'];
+    const clock = createClock();
+
+    const ids = ['today', 'status', 'progress', 'month-total', 'daily', 'hourly', 'workdays', 'clock-status'];
     const fields = Object.fromEntries(ids.map(id => [id, document.getElementById(id)]));
     const currency = digits => new Intl.NumberFormat('zh-CN', {
       style: 'currency', currency: 'CNY', minimumFractionDigits: digits, maximumFractionDigits: digits,
@@ -60,10 +63,11 @@
     const standard = currency(2);
 
     function update() {
-      const wage = calculateWage(new Date());
+      const wage = calculateWage(clock.now());
       const amount = precise.format(wage.earnedToday);
       const values = {
         today: amount,
+        'clock-status': clock.source,
         status: wage.status,
         'month-total': standard.format(wage.earnedThisMonth),
         daily: standard.format(wage.daily),
@@ -78,8 +82,29 @@
       if (document.title !== title) document.title = title;
     }
 
+    function syncAndRender() {
+      clock.sync().then(update);
+    }
+
+    function resume() {
+      if (document.hidden) return;
+      update();
+      syncAndRender();
+    }
+
     update();
-    setInterval(update, 100);
+    syncAndRender();
+    setInterval(() => {
+      if (!document.hidden) update();
+    }, 50);
+    setInterval(() => {
+      if (!document.hidden) syncAndRender();
+    }, 120_000);
+    document.addEventListener('visibilitychange', resume);
+    window.addEventListener('pageshow', event => {
+      if (event.persisted) resume();
+    });
+    window.addEventListener('online', resume);
   </script>
 </body>
 </html>
